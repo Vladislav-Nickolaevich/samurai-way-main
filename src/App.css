@@ -51,26 +51,6 @@
 
 }
 
-.header {
-    grid-area: h;
-    background-color: black;
-}
 
-.header img {
-    width: 20px;
-}
 
-.content {
-    grid-area: c;
-    background-color: chartreuse;
-}
 
-.content img {
-    width: 700px;
-    height: 300px;
-}
-
-.nav {
-    grid-area: n;
-    background-color: chocolate;
-}
