@@ -1,5 +1,5 @@
 import React from 'react';
-import profClasses from './Profile.module.css'
+import s from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 
 type ProfileType = {
@@ -7,13 +7,11 @@ type ProfileType = {
 }
 const Profile = (props: ProfileType) => {
     return (
-
-        <div className={profClasses.content}>
+        <div>
             <div>
                 <img
                     src={props.src}
                     alt=""/>
-
             </div>
             <div>
                 ava + descr
