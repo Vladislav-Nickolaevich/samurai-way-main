@@ -5,10 +5,10 @@ type HeaderType = {
     img: string
 }
 
-const Header = () => {
+const Header = (props: HeaderType) => {
     return (
         <header className={headerClasses.header}>
-            <img src="https://www.tailorbrands.com/wp-content/uploads/2020/07/mcdonalds-logo.jpg" alt=""/>
+            <img src={props.img} alt=''/>
         </header>
     );
 };
