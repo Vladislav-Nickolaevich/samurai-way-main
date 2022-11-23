@@ -6,12 +6,12 @@ const MyPosts = () => {
     return (
         <>
             <div>
-                My posts
-                <div>New post</div>
+                <div>My posts </div>
+                <textarea></textarea>
+                <button>Add post</button>
             </div>
-            {/* eslint-disable-next-line react/jsx-no-undef */}
-            <Post mes={'poost 1'} photo={"https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg"}/>
-            <Post mes={'poost 2'} photo={"https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg"}/>
+            <Post likeCounts={10} mes={'poost 1'} photo={"https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg"}/>
+            <Post likeCounts={15} mes={'poost 2'} photo={"https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg"}/>
         </>
 
     );
