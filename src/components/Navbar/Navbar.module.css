@@ -2,8 +2,12 @@
 .nav {
     grid-area: n;
     background-color: chocolate;
+    padding: 15px;
 }
 .item a{
     color: #fff;
     text-decoration: none;
+}
+.item a:focus {
+    color: green;
 }
