@@ -3,9 +3,6 @@ import navClasses from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 
 
-// style={({isActive}) => isActive? {color: 'red'}:{}}
-// classNameActive заменяется на то что сверху????
-// type NavbarType = 'Profile' | 'Messages' | 'News' | 'Mucis' | 'Settings'
 const Navbar = () => {
     return (
 
@@ -22,7 +19,6 @@ const Navbar = () => {
             <div className={navClasses.item}>
                 <NavLink to="/music">Music</NavLink>
             </div>
-
             <div className={navClasses.item}>
                 <NavLink to="/settings">Settings</NavLink>
             </div>
