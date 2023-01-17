@@ -1,24 +1,31 @@
 import React from 'react';
 import s from './MyPosts.module.css'
-import {Post} from "./Posts/Post";
+import {Post, PostsType} from "./Posts/Post";
 
-const MyPosts = () => {
+type MyPostsType = {
+    title: string
+    buttonAdd: string
+    posts: PostsType[]
+}
+const MyPosts = (props:MyPostsType) => {
     return (
         <div className={s.postsBlock}>
-            <h3>My posts</h3>
+            <h3>{props.title}</h3>
             <div>
                 <div>
                     <textarea></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button>{props.buttonAdd}</button>
                 </div>
             </div>
             <div className={s.posts}>
-                <Post likeCounts={10} mes={'Hi'}
-                      photo={"https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg"}/>
-                <Post likeCounts={15} mes={"It's my first post"}
-                      photo={"https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg"}/>
+                {props.posts.map(el => {
+                    return (
+                        <Post likeCounts={el.likeCounts} mes={el.mes}
+                              photo={el.photo} errorMes={el.errorMes}/>
+                    );
+                })}
             </div>
         </div>
     );
