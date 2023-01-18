@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './MyPosts.module.css'
-import {Post, PostsType} from "./Posts/Post";
+import {Post, PostType} from "./Posts/Post";
 
 type MyPostsType = {
     title: string
     buttonAdd: string
-    posts: PostsType[]
+    posts: PostType[]
 }
 const MyPosts = (props:MyPostsType) => {
     return (
@@ -20,12 +20,7 @@ const MyPosts = (props:MyPostsType) => {
                 </div>
             </div>
             <div className={s.posts}>
-                {props.posts.map(el => {
-                    return (
-                        <Post likeCounts={el.likeCounts} mes={el.mes}
-                              photo={el.photo} errorMes={el.errorMes}/>
-                    );
-                })}
+                <Post posts={props.posts}/>
             </div>
         </div>
     );

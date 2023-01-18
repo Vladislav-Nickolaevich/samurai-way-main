@@ -9,16 +9,16 @@ import {Route} from 'react-router-dom';
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
-
+import {v1} from "uuid";
 
 
 const App = () => {
     const navbar:NavbarType[] = [
-        {path: '/profile', title: 'Profile'},
-        {path: '/dialogs', title: 'Messages'},
-        {path: '/news', title: 'News'},
-        {path: '/music', title: 'Music'},
-        {path: '/settings', title: 'Settings'},
+        {id: v1(), path: '/profile', title: 'Profile'},
+        {id: v1(), path: '/dialogs', title: 'Messages'},
+        {id: v1(), path: '/news', title: 'News'},
+        {id: v1(), path: '/music', title: 'Music'},
+        {id: v1(), path: '/settings', title: 'Settings'},
     ]
 
     return (

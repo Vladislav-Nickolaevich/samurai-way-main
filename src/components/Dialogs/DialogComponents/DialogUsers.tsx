@@ -9,10 +9,10 @@ type DialogUsersType = {
 export const DialogUsers = (props:DialogUsersType) => {
     return (
         <div className={s.dialogsItems}>
-            {props.chat.map(el => {
+            {props.chat.map(d => {
                 return (
-                    <div key={el.id} className={s.dialog}>
-                        <NavLink to={'/dialogs/' + el.id}>{el.userName}</NavLink>
+                    <div key={d.id} className={s.dialog}>
+                        <NavLink to={'/dialogs/' + d.id}>{d.userName}</NavLink>
                     </div>
                 )
             })}

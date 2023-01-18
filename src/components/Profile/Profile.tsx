@@ -1,16 +1,21 @@
 import React from 'react';
 import MyPosts from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
-import {PostsType} from "./MyPosts/Posts/Post";
+import {PostType} from "./MyPosts/Posts/Post";
+import {v1} from "uuid";
 
 
 export const Profile = () => {
-    const posts: PostsType[] = [
+    const posts: PostType[] = [
         {
-            likeCounts: 10, mes: 'Hi', photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
+            id:v1(),
+            likeCounts: 10,
+            mes: 'Hi',
+            photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
             errorMes: 'Image not found'
         },
         {
+            id:v1(),
             likeCounts: 15,
             mes: "It's my first post",
             photo: "https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg",

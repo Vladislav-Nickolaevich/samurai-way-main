@@ -2,24 +2,31 @@ import React from 'react';
 import PostsClasses from './Post.module.css'
 
 
-export type PostsType = {
+export type PostType = {
+    id: string
     mes: string
     photo: string
     likeCounts: number
     errorMes: string
 }
-export const Post = (props: PostsType) => {
+type PostsArrType = {
+    posts: PostType[]
+}
+export const Post = (props: PostsArrType) => {
     return (
-        <>
             <div className={PostsClasses.red}>
-                <img src={props.photo} alt={props.errorMes}/>
-                {props.mes}
-                <div>
-                    <span>Like {props.likeCounts}</span>
-                </div>
+                {props.posts.map(p => {
+                    return (
+                        <div key={p.id}>
+                            <img src={p.photo} alt={p.errorMes}/>
+                            {p.mes}
+                            <div>
+                                <span>Like {p.likeCounts}</span>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
-        </>
-
     );
 };
 
