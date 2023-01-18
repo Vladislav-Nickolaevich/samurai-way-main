@@ -10,7 +10,7 @@ export type DialogType = {
     message: string
 }
 
-const Dialogs = () => {
+export const Dialogs = () => {
     const chat: DialogType[] = [
         {id: v1(), userName: 'Vlad', message: 'Hi'},
         {id: v1(), userName: 'Alex', message: 'What is the best country for travelling?'},
@@ -25,4 +25,3 @@ const Dialogs = () => {
     );
 };
 
-export default Dialogs;

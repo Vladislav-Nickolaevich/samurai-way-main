@@ -3,19 +3,19 @@ import navClasses from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 
 export type NavbarType = {
-    path: string
     title: string
     id: string
+    path: string
 }
 type NavbarArray = {
     navbar: NavbarType[]
 }
-const Navbar = (props:NavbarArray) => {
+export const Navbar = (props:NavbarArray) => {
     return (
         <nav className={navClasses.nav}>
             {props.navbar.map(el => {
                 return (
-                    <div key={el.id} className={navClasses.item} >
+                    <div className={navClasses.item}  key={el.id}>
                         <NavLink  to={el.path}>{el.title}</NavLink>
                     </div>
                 );
@@ -23,5 +23,3 @@ const Navbar = (props:NavbarArray) => {
         </nav>
     );
 };
-
-export default Navbar;

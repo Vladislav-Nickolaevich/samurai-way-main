@@ -6,7 +6,7 @@ type HeaderType = {
     titleError: string
 }
 
-const Header = (props: HeaderType) => {
+export const Header = (props: HeaderType) => {
     return (
         <header className={headerClasses.header}>
             <img src={props.img} alt={props.titleError}/>
@@ -14,4 +14,3 @@ const Header = (props: HeaderType) => {
     );
 };
 
-export default Header;
