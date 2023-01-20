@@ -12,13 +12,10 @@
     text-decoration: none;
     color: black;
 }
-.dialog {
 
-}
-
-.dialogsItems .active a{
+.dialogsItems .active a:focus{
     font-weight: bold;
-    color: navy !important;
+    color: white !important;
 }
 
 /*Messages*/

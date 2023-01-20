@@ -1,9 +1,9 @@
 import React from 'react';
 import s from "../Dialogs.module.css";
-import {DialogType} from "../Dialogs";
+import {ChatType} from "../Dialogs";
 
 type DialogMessageType = {
-    chat: DialogType[]
+    chat: ChatType[]
 }
 export const DialogMessage = (props: DialogMessageType) => {
     return (
