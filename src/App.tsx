@@ -8,30 +8,25 @@ import {Route} from 'react-router-dom';
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
-import {Dialogs, messageType, userNameType} from "./components/Dialogs/Dialogs";
+import {Dialogs} from "./components/Dialogs/Dialogs";
 import {path} from "./components/Constans/Constans";
-import {PostType} from "./components/Profile/MyPosts/Posts/Post";
+import {AppType} from "./redux/State";
 
-
-type AppType = {
-    posts: PostType[]
-    navbar: NavbarType[]
-    message: messageType[]
-    userName: userNameType[]
+export type AppStateType = {
+    appState: AppType
 }
-const App = (props:AppType) => {
-    const {posts, navbar, message, userName} = props
+
+const App = (props:AppStateType) => {
+    const {posts, navbar, messages, userName} = props.appState
 
     const headerImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ-DfbDa_apFhyZF4tENuL5UWFIb3lCtHK5f2AqBlFJKf7PDGqVOfrGS73OpU27s975mI&usqp=CAU"
 
     return (
         <div className='app-wrapper'>
             <Header img={headerImg} titleError={'Image is not found'}/>
-
             <Navbar navbar={navbar}/>
-
             <div className='app-wrapper-content'>
-                <Route path={path.DIALOGS} render={() => <Dialogs messages={message} userName={userName}/>}/>
+                <Route path={path.DIALOGS} render={() => <Dialogs messages={messages} userName={userName}/>}/>
                 <Route path={path.PROFILE} render={() => <Profile posts={posts}/>}/>
                 <Route path={path.NEWS} render={() => <News/>}/>
                 <Route path={path.MUSIC} render={() => <Music/>}/>
