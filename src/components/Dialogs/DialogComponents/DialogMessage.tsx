@@ -1,14 +1,14 @@
 import React from 'react';
 import s from "../Dialogs.module.css";
-import {ChatType} from "../Dialogs";
+import {messageType} from "../Dialogs";
 
 type DialogMessageType = {
-    chat: ChatType[]
+    messages: messageType[]
 }
 export const DialogMessage = (props: DialogMessageType) => {
     return (
         <div className={s.messages}>
-            {props.chat.map(d => {
+            {props.messages.map(d => {
                 return (
                     <div className={s.message} key={d.id}>
                         {d.message}

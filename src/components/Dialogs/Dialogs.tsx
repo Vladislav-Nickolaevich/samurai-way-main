@@ -3,20 +3,24 @@ import s from './Dialogs.module.css'
 import {DialogUsers} from "./DialogComponents/DialogUsers";
 import {DialogMessage} from "./DialogComponents/DialogMessage";
 
-export type ChatType = {
-    id: string
-    userName: string
+export type messageType = {
+    id: number
     message: string
 }
+export type userNameType = {
+    id: number
+    userName: string
+}
 type DialogType = {
-    chat: ChatType[]
+    messages: messageType[]
+    userName: userNameType[]
+
 }
 export const Dialogs = (props:DialogType) => {
-
     return (
         <div className={s.dialogs}>
-            <DialogUsers chat={props.chat}/>
-            <DialogMessage chat={props.chat}/>
+            <DialogUsers userName={props.userName}/>
+            <DialogMessage messages={props.messages}/>
         </div>
     );
 };

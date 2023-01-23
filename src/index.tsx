@@ -7,7 +7,7 @@ import {NavbarType} from "./components/Navbar/Navbar";
 import {v1} from "uuid";
 import {path} from "./components/Constans/Constans";
 import {PostType} from "./components/Profile/MyPosts/Posts/Post";
-import {ChatType} from "./components/Dialogs/Dialogs";
+import {messageType, userNameType} from "./components/Dialogs/Dialogs";
 
 
 const navbar: NavbarType[] = [
@@ -33,15 +33,22 @@ const posts: PostType[] = [
         errorMes: 'Image not found'
     },
 ]
-const chat: ChatType[] = [
-    {id: v1(), userName: 'Vlad', message: 'Hi'},
-    {id: v1(), userName: 'Alex', message: 'What is the best country for travelling?'},
-    {id: v1(), userName: 'Katya', message: 'I like country with sea'},
-    {id: v1(), userName: 'John', message: 'I want to see interesting places'},
+const messages: messageType[] = [
+    {id: 1,  message: 'Hi'},
+    {id: 2,  message: 'What is the best country for travelling?'},
+    {id: 3,  message: 'I like country with sea'},
+    {id: 4,  message: 'I want to see interesting places'},
+]
+
+const userName: userNameType[] = [
+    {id: 1, userName: 'Vlad'},
+    {id: 2, userName: 'Alex'},
+    {id: 3, userName: 'Katya'},
+    {id: 4, userName: 'John'},
 ]
 
 ReactDOM.render(<BrowserRouter>
-        <App posts={posts} navbar={navbar} chat={chat}/>
+        <App posts={posts} navbar={navbar} userName={userName} message={messages}/>
     </BrowserRouter>
     , document.getElementById('root'));
 
