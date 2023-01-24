@@ -17,7 +17,7 @@ export type AppStateType = {
 }
 
 const App = (props:AppStateType) => {
-    const {posts, navbar, messages, userName} = props.appState
+    const {profilePage, navbar, messagesPage} = props.appState
 
     const headerImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ-DfbDa_apFhyZF4tENuL5UWFIb3lCtHK5f2AqBlFJKf7PDGqVOfrGS73OpU27s975mI&usqp=CAU"
 
@@ -26,8 +26,8 @@ const App = (props:AppStateType) => {
             <Header img={headerImg} titleError={'Image is not found'}/>
             <Navbar navbar={navbar}/>
             <div className='app-wrapper-content'>
-                <Route path={path.DIALOGS} render={() => <Dialogs messages={messages} userName={userName}/>}/>
-                <Route path={path.PROFILE} render={() => <Profile posts={posts}/>}/>
+                <Route path={path.DIALOGS} render={() => <Dialogs data={messagesPage} />}/>
+                <Route path={path.PROFILE} render={() => <Profile posts={profilePage}/>}/>
                 <Route path={path.NEWS} render={() => <News/>}/>
                 <Route path={path.MUSIC} render={() => <Music/>}/>
                 <Route path={path.SETTINGS} render={() => <Settings/>}/>

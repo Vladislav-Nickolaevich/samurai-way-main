@@ -14,13 +14,15 @@ export type userNameType = {
 type DialogType = {
     messages: messageType[]
     userName: userNameType[]
-
 }
-export const Dialogs = (props:DialogType) => {
+type DataType = {
+    data: DialogType
+}
+export const Dialogs = (props:DataType) => {
     return (
         <div className={s.dialogs}>
-            <DialogUsers userName={props.userName}/>
-            <DialogMessage messages={props.messages}/>
+            <DialogUsers userName={props.data.userName}/>
+            <DialogMessage messages={props.data.messages}/>
         </div>
     );
 };
