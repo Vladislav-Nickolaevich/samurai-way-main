@@ -10,6 +10,7 @@ export type messageType = {
 export type userNameType = {
     id: number
     userName: string
+    img: string
 }
 type DialogType = {
     messages: messageType[]
