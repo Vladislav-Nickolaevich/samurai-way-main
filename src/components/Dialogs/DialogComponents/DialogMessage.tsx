@@ -6,6 +6,7 @@ type DialogMessageType = {
     messages: messageType[]
 }
 export const DialogMessage = (props: DialogMessageType) => {
+    const addMessage = () => {}
     return (
         <div className={s.messages}>
             {props.messages.map(d => {
@@ -15,6 +16,8 @@ export const DialogMessage = (props: DialogMessageType) => {
                     </div>
                 )
             })}
+            <textarea></textarea>
+            <button onClick={addMessage}>add</button>
         </div>
     )
 };

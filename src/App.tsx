@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import {Navbar, NavbarType} from "./components/Navbar/Navbar";
+import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Header} from "./components/Header/Header";
 import {Route} from 'react-router-dom';
@@ -14,6 +14,7 @@ import {AppType} from "./redux/State";
 
 export type AppStateType = {
     appState: AppType
+    addPost: (newPost: string) => void
 }
 
 const App = (props:AppStateType) => {
@@ -27,7 +28,7 @@ const App = (props:AppStateType) => {
             <Navbar navbar={navbar}/>
             <div className='app-wrapper-content'>
                 <Route path={path.DIALOGS} render={() => <Dialogs data={messagesPage} />}/>
-                <Route path={path.PROFILE} render={() => <Profile posts={profilePage}/>}/>
+                <Route path={path.PROFILE} render={() => <Profile posts={profilePage} addPost={props.addPost}/>}/>
                 <Route path={path.NEWS} render={() => <News/>}/>
                 <Route path={path.MUSIC} render={() => <Music/>}/>
                 <Route path={path.SETTINGS} render={() => <Settings/>}/>

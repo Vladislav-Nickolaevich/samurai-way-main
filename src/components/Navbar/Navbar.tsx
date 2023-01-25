@@ -9,7 +9,6 @@ export type SidebarType = {
     path: string
 }
 
-
 export type NavbarType = {
     sidebar: SidebarType[]
     friends: FriendsType

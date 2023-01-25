@@ -1,7 +1,6 @@
 import React from 'react';
 import PostsClasses from './Post.module.css'
 
-
 export type PostType = {
     id: string
     mes: string
