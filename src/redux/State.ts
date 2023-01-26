@@ -3,6 +3,7 @@ import {v1} from "uuid";
 import {path} from "../components/Constans/Constans";
 import {PostType} from "../components/Profile/MyPosts/Posts/Post";
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
+import {rerenderEntireTree} from "../render";
 
 export type ProfilePageType = {
     posts: PostType[]
@@ -77,5 +78,6 @@ export const addPost = (postMessage: string) => {
         errorMes: 'Image not found'
     }
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }
 

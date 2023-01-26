@@ -18,7 +18,6 @@ export const Profile = (props: ProfileType) => {
             />
             <MyPosts
                 title={'My posts'}
-                buttonAdd={'Add post'}
                 posts={props.posts.posts}
                 addPost={props.addPost}
             />

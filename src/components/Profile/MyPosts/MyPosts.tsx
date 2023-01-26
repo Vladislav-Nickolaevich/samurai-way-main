@@ -4,7 +4,6 @@ import {Post, PostType} from "./Posts/Post";
 
 type MyPostsType = {
     title: string
-    buttonAdd: string
     posts: PostType[]
     addPost: (newPost: string) => void
 }
@@ -12,8 +11,10 @@ const MyPosts = (props:MyPostsType) => {
 
     const [value, setValue] = useState('')
     const addPostHandler = () => {
-        props.addPost(value)
-        setValue('')
+        if(value.trim() !== ''){
+            props.addPost(value)
+            setValue('')
+        }
     }
     const onChangeTextarea = (e:ChangeEvent<HTMLTextAreaElement>) => {
         setValue(e.currentTarget.value)
@@ -26,7 +27,7 @@ const MyPosts = (props:MyPostsType) => {
                     <textarea value={value} onChange={onChangeTextarea}></textarea>
                 </div>
                 <div>
-                    <button onClick={addPostHandler}>{props.buttonAdd}</button>
+                    <button onClick={addPostHandler}>Add posts</button>
                 </div>
             </div>
             <div className={s.posts}>
