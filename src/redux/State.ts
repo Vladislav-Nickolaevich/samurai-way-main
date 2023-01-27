@@ -5,8 +5,10 @@ import {PostType} from "../components/Profile/MyPosts/Posts/Post";
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
 import {rerenderEntireTree} from "../render";
 
+
 export type ProfilePageType = {
     posts: PostType[]
+    newPostText: string
 }
 export type MessagesPageType = {
     userName: userNameType[]
@@ -66,18 +68,25 @@ export const state: AppType = {
                 errorMes: 'Image not found'
             },
         ],
+        newPostText: ''
     },
 }
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
     const newPost = {
         id:v1(),
         likeCounts: 0,
-        mes: postMessage,
+        mes: state.profilePage.newPostText,
         photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
         errorMes: 'Image not found'
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
     rerenderEntireTree(state)
 }
 

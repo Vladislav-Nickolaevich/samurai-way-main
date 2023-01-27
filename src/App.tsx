@@ -14,7 +14,8 @@ import {AppType} from "./redux/State";
 
 export type AppStateType = {
     appState: AppType
-    addPost: (newPost: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 
 const App = (props:AppStateType) => {
@@ -31,7 +32,9 @@ const App = (props:AppStateType) => {
 
                 <Route path={path.PROFILE} render={() => <Profile
                     posts={profilePage}
-                    addPost={props.addPost}/>}/>
+                    addPost={props.addPost}
+                    updateNewPostText={props.updateNewPostText}
+                />}/>
                 
                 <Route path={path.NEWS} render={() => <News/>}/>
                 <Route path={path.MUSIC} render={() => <Music/>}/>
