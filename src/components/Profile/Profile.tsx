@@ -22,6 +22,7 @@ export const Profile = (props: ProfileType) => {
                 posts={props.posts.posts}
                 addPost={props.addPost}
                 updateNewPostText={props.updateNewPostText}
+                newPostText={props.posts.newPostText}
             />
         </div>
 

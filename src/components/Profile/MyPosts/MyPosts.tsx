@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post, PostType} from "./Posts/Post";
 
@@ -8,29 +8,28 @@ type MyPostsType = {
     posts: PostType[]
     addPost: () => void
     updateNewPostText: (newText: string) => void
+    newPostText: string
 }
 const MyPosts = (props:MyPostsType) => {
-
-    const [value, setValue] = useState('')
+    let newText = React.createRef<HTMLTextAreaElement>()
     const addPostHandler = () => {
-        if(value.trim() !== ''){
+        if(newText.current?.value?.trim() !== ''){
             props.addPost()
-            setValue('')
-
         }
     }
 
+
     const onChangeTextarea = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value
+        let text = newText.current?.value
+        if(text)
         props.updateNewPostText(text)
-        setValue(text)
     }
     return (
         <div className={s.postsBlock}>
             <h3>{props.title}</h3>
             <div>
                 <div>
-                   {<textarea value={value}  onChange={onChangeTextarea}/>}
+                   <textarea ref={newText} value={props.newPostText} onChange={onChangeTextarea}/>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add posts</button>
