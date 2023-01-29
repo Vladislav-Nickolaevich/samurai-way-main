@@ -3,9 +3,8 @@ import {v1} from "uuid";
 import {path} from "../components/Constans/Constans";
 import {PostType} from "../components/Profile/MyPosts/Posts/Post";
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
-import {rerenderEntireTree} from "../render";
 
-
+let rerenderEntireTree = (state: AppType ) => {}
 export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
@@ -89,4 +88,6 @@ export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
     rerenderEntireTree(state)
 }
-
+export const subscribe = (observer: (state: AppType) => void) => {
+    rerenderEntireTree = observer
+}

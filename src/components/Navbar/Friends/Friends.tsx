@@ -10,6 +10,7 @@ export type FriendsType = {
     title: string
     imgFriends: ImgFriends[]
 }
+
 export const Friends = (props: FriendsType) => {
     return (
         <div className={f.friendsContainer}>
@@ -17,8 +18,8 @@ export const Friends = (props: FriendsType) => {
             <div>
                 {props.imgFriends.map(img => {
                     return (
-                        <span>
-                            <img src={img.img} alt={img.err}  className={f.img}/>
+                        <span key={img.id}>
+                            <img src={img.img} alt={img.err}  className={f.img} />
                         </span>
                     )
                 })}
@@ -26,4 +27,3 @@ export const Friends = (props: FriendsType) => {
         </div>
     );
 };
-
