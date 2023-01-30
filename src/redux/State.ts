@@ -19,7 +19,7 @@ export type AppType = {
 }
 
 export let store = {
-    _state: {
+    _state: <AppType> {
         navbar: {
             sidebar: [
                 {id: v1(), path: path.PROFILE, title: 'Profile'},
