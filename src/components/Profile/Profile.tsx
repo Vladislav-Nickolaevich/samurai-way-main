@@ -19,8 +19,6 @@ export const Profile = (props: ProfileType) => {
             <MyPosts
                 title={'My posts'}
                 posts={props.posts.posts}
-                // addPost={props.addPost}
-                // updateNewPostText={props.updateNewPostText}
                 dispatch={props.dispatch}
                 newPostText={props.posts.newPostText}
             />
