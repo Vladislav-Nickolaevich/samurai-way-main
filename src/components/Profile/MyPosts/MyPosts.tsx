@@ -6,7 +6,7 @@ import {Post, PostType} from "./Posts/Post";
 type MyPostsType = {
     title: string
     posts: PostType[]
-    dispatch: ({}) => void
+    dispatch: (action: any) => void
     newPostText: string
 }
 const MyPosts = (props: MyPostsType) => {

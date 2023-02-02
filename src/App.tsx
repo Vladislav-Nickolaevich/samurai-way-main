@@ -14,9 +14,7 @@ import {AppType} from "./redux/State";
 
 export type AppStateType = {
     appState: AppType
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-    dispatch: ({}) => void
+    dispatch: (action: any) => void
 }
 
 const App = (props:AppStateType) => {

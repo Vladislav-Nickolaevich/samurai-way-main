@@ -5,7 +5,7 @@ import {ProfilePageType} from "../../redux/State";
 
 type ProfileType = {
     posts: ProfilePageType
-    dispatch: ({}) => void
+    dispatch: (action: any) => void
 }
 export const Profile = (props: ProfileType) => {
     const profileInfoImg = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
