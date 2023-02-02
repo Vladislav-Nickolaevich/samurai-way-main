@@ -4,6 +4,10 @@ import {path} from "../components/Constans/Constans";
 import {PostType} from "../components/Profile/MyPosts/Posts/Post";
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
 
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+
+
 export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
@@ -111,7 +115,7 @@ export let store = {
     },
 
     dispatch(action: any) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost = {
                 id: v1(),
                 likeCounts: 0,
@@ -122,9 +126,20 @@ export let store = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
         }
+    }
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+export const updateNewPostTextActionCreator = (text: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT, newText: text
     }
 }
