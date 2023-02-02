@@ -6,30 +6,28 @@ import {Post, PostType} from "./Posts/Post";
 type MyPostsType = {
     title: string
     posts: PostType[]
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: ({}) => void
     newPostText: string
 }
-const MyPosts = (props:MyPostsType) => {
+const MyPosts = (props: MyPostsType) => {
     let newText = React.createRef<HTMLTextAreaElement>()
     const addPostHandler = () => {
-        if(newText.current?.value?.trim() !== ''){
-            props.addPost()
+        if (newText.current?.value?.trim() !== '') {
+            props.dispatch({type: 'ADD-POST'})
         }
     }
 
-
-    const onChangeTextarea = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = newText.current?.value
-        if(text)
-        props.updateNewPostText(text)
+        if (text)
+            props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
     }
     return (
         <div className={s.postsBlock}>
             <h3>{props.title}</h3>
             <div>
                 <div>
-                   <textarea ref={newText} value={props.newPostText} onChange={onChangeTextarea}/>
+                    <textarea ref={newText} value={props.newPostText} onChange={onChangeTextarea}/>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add posts</button>

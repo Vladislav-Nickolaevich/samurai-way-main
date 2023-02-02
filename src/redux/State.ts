@@ -19,7 +19,7 @@ export type AppType = {
 }
 
 export let store = {
-    _state: <AppType> {
+    _state: <AppType>{
         navbar: {
             sidebar: [
                 {id: v1(), path: path.PROFILE, title: 'Profile'},
@@ -99,29 +99,32 @@ export let store = {
             newPostText: ''
         },
     },
-    getState(){
+    _callSubscriber(state: AppType) {
+        console.log('rerender')
+    },
+
+    getState() {
         return this._state
     },
-    _callSubscriber(state: AppType) {
-        console.log('rerender')},
-    addPost() {
-        const newPost = {
-            id: v1(),
-            likeCounts: 0,
-            mes: this._state.profilePage.newPostText,
-            photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
-            errorMes: 'Image not found'
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state)
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
-    subscribe(observer: (state: AppType) => void)  {
+    subscribe(observer: (state: AppType) => void) {
         this._callSubscriber = observer
-    }
+    },
 
+    dispatch(action: any) {
+        if (action.type === 'ADD-POST') {
+            const newPost = {
+                id: v1(),
+                likeCounts: 0,
+                mes: this._state.profilePage.newPostText,
+                photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
+                errorMes: 'Image not found'
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }
+    }
 }
