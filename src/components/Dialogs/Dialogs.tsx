@@ -12,18 +12,22 @@ export type userNameType = {
     userName: string
     img: string
 }
-type DialogType = {
+export type DialogType = {
     messages: messageType[]
     userName: userNameType[]
+    newMessageText: string
 }
 type DataType = {
     data: DialogType
+    dispatch: (action: any) => void
 }
 export const Dialogs = (props:DataType) => {
     return (
         <div className={s.dialogs}>
             <DialogUsers userName={props.data.userName}/>
-            <DialogMessage messages={props.data.messages}/>
+            <DialogMessage data={props.data}
+                           dispatch={props.dispatch}
+            />
         </div>
     );
 };

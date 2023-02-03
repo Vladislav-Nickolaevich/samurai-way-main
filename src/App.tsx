@@ -27,7 +27,10 @@ const App = (props:AppStateType) => {
             <Header img={headerImg} titleError={'Image is not found'}/>
             <Navbar navbar={navbar}/>
             <div className='app-wrapper-content'>
-                <Route path={path.DIALOGS} render={() => <Dialogs data={messagesPage} />}/>
+                <Route path={path.DIALOGS} render={() => <Dialogs
+                    data={messagesPage}
+                    dispatch={props.dispatch}
+                />}/>
 
                 <Route path={path.PROFILE} render={() => <Profile
                     posts={profilePage}

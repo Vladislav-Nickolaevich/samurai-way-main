@@ -6,7 +6,8 @@ import {messageType, userNameType} from "../components/Dialogs/Dialogs";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
 
 export type ProfilePageType = {
     posts: PostType[]
@@ -15,13 +16,13 @@ export type ProfilePageType = {
 export type MessagesPageType = {
     userName: userNameType[]
     messages: messageType[]
+    newMessageText: string
 }
 export type AppType = {
     navbar: NavbarType
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
 }
-
 export let store = {
     _state: <AppType>{
         navbar: {
@@ -82,6 +83,8 @@ export let store = {
                     img: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg"
                 },
             ],
+            newMessageText: ''
+
         },
         profilePage: {
             posts: [
@@ -129,10 +132,22 @@ export let store = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
+        }else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+
+            this._state.messagesPage.newMessageText = action.newMessageText
+            this._callSubscriber(this._state)
+        }else if(action.type === SEND_NEW_MESSAGE_TEXT){
+            let newMessage = {id: 5, message: this._state.messagesPage.newMessageText}
+            this._state.messagesPage.newMessageText = ''
+            this._state.messagesPage.messages.push(newMessage)
+            this._callSubscriber(this._state)
+
         }
     }
 }
 
 export const addPostActionCreator = () => ({type: ADD_POST})
-
 export const updateNewPostTextActionCreator = (text: string) =>  ({ type: UPDATE_NEW_POST_TEXT, newText: text})
+
+export const updateMessageDialogs = (mes:string) => ({type:  UPDATE_NEW_MESSAGE_TEXT, newMessageText: mes})
+export const sendMessageDialogs = () => ({type: SEND_NEW_MESSAGE_TEXT})
