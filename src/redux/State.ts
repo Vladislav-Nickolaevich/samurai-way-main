@@ -3,11 +3,14 @@ import {v1} from "uuid";
 import {path} from "../components/Constans/Constans";
 import {PostType} from "../components/Profile/MyPosts/Posts/Post";
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
+import profilePageReducer, {ADD_POST, UPDATE_NEW_POST_TEXT} from "./profilePage-reducer";
+import messagesPageReducer, {SEND_NEW_MESSAGE_TEXT, UPDATE_NEW_MESSAGE_TEXT} from "./messagesPage-reducer";
+import navbarReducer from "./navbar-reducer";
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
+// const ADD_POST = 'ADD-POST'
+// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+// const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+// const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
 
 export type ProfilePageType = {
     posts: PostType[]
@@ -118,36 +121,15 @@ export let store = {
     },
 
     dispatch(action: any) {
-        if (action.type === ADD_POST) {
-            const newPost = {
-                id: v1(),
-                likeCounts: 0,
-                mes: this._state.profilePage.newPostText,
-                photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
-                errorMes: 'Image not found'
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        }else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-
-            this._state.messagesPage.newMessageText = action.newMessageText
-            this._callSubscriber(this._state)
-        }else if(action.type === SEND_NEW_MESSAGE_TEXT){
-            let newMessage = {id: 5, message: this._state.messagesPage.newMessageText}
-            this._state.messagesPage.newMessageText = ''
-            this._state.messagesPage.messages.push(newMessage)
-            this._callSubscriber(this._state)
-
-        }
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action)
+        this._state.messagesPage = messagesPageReducer(this._state.messagesPage, action)
+        this._state.navbar = navbarReducer(this._state.navbar, action)
+        this._callSubscriber(this._state)
     }
 }
 
 export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text: string) =>  ({ type: UPDATE_NEW_POST_TEXT, newText: text})
+export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
-export const updateMessageDialogs = (mes:string) => ({type:  UPDATE_NEW_MESSAGE_TEXT, newMessageText: mes})
+export const updateMessageDialogs = (mes: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: mes})
 export const sendMessageDialogs = () => ({type: SEND_NEW_MESSAGE_TEXT})

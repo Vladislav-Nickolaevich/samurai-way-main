@@ -4,16 +4,17 @@ import {Post, PostType} from "./Posts/Post";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/State";
 
 
-type MyPostsType = {
-    title: string
+export type MyPostsType = {
     posts: PostType[]
-    dispatch: (action: any) => void
     newPostText: string
+}
+type MyPostsDispatchType = {
+    dispatch: (action: any) => void
+    postType: MyPostsType
 }
 
 
-
-const MyPosts = (props: MyPostsType) => {
+const MyPosts = (props: MyPostsDispatchType) => {
     let newText = React.createRef<HTMLTextAreaElement>()
     const addPostHandler = () => {
         if (newText.current?.value?.trim() !== '') {
@@ -31,17 +32,17 @@ const MyPosts = (props: MyPostsType) => {
     }
     return (
         <div className={s.postsBlock}>
-            <h3>{props.title}</h3>
+            <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newText} value={props.newPostText} onChange={onChangeTextarea}/>
+                    <textarea ref={newText} value={props.postType.newPostText} onChange={onChangeTextarea}/>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add posts</button>
                 </div>
             </div>
             <div className={s.posts}>
-                <Post posts={props.posts}/>
+                <Post posts={props.postType.posts}/>
             </div>
         </div>
     );

@@ -6,7 +6,6 @@ import {sendMessageDialogs, updateMessageDialogs} from "../../../redux/State";
 type DialogMessageType = {
     data: DialogType
     dispatch: (action: any) => void
-
 }
 export const DialogMessage = (props: DialogMessageType) => {
     let newMessage = props.data.newMessageText

@@ -17,10 +17,8 @@ export const Profile = (props: ProfileType) => {
                 titleError={'Image is not found'}
             />
             <MyPosts
-                title={'My posts'}
-                posts={props.posts.posts}
-                dispatch={props.dispatch}
-                newPostText={props.posts.newPostText}
+                postType={props.posts}
+                     dispatch={props.dispatch}
             />
         </div>
 
