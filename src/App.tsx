@@ -10,15 +10,15 @@ import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {path} from "./components/Constans/Constans";
-import {AppType} from "./redux/State";
+import {AppRootStateType} from "./redux/redux-store";
 
 export type AppStateType = {
-    appState: AppType
     dispatch: (action: any) => void
+    state: AppRootStateType
 }
 
 const App = (props: AppStateType) => {
-    const {profilePage, navbar, messagesPage} = props.appState
+    const {profilePage, navbar, messagesPage} = props.state
 
     const headerImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ-DfbDa_apFhyZF4tENuL5UWFIb3lCtHK5f2AqBlFJKf7PDGqVOfrGS73OpU27s975mI&usqp=CAU"
 

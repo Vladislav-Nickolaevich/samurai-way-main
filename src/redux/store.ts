@@ -3,14 +3,10 @@ import {v1} from "uuid";
 import {path} from "../components/Constans/Constans";
 import {PostType} from "../components/Profile/MyPosts/Posts/Post";
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
-import profilePageReducer, {ADD_POST, UPDATE_NEW_POST_TEXT} from "./profilePage-reducer";
-import messagesPageReducer, {SEND_NEW_MESSAGE_TEXT, UPDATE_NEW_MESSAGE_TEXT} from "./messagesPage-reducer";
 import navbarReducer from "./navbar-reducer";
+import profilePageReducer from "./profilePage-reducer";
+import messagesPageReducer from "./messagesPage-reducer";
 
-// const ADD_POST = 'ADD-POST'
-// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-// const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-// const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
 
 export type ProfilePageType = {
     posts: PostType[]
@@ -23,10 +19,14 @@ export type MessagesPageType = {
 }
 export type AppType = {
     navbar: NavbarType
-    profilePage: ProfilePageType
     messagesPage: MessagesPageType
+    profilePage: ProfilePageType
 }
-export let store = {
+
+
+// export type StoreType = {_state: AppType, _callSubscriber(state: AppType): void, getState(): AppType, subscribe(observer: (state: AppType) => void): void, dispatch(action: any): void}
+
+export let store= {
     _state: <AppType>{
         navbar: {
             sidebar: [
@@ -128,8 +128,3 @@ export let store = {
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
-export const updateMessageDialogs = (mes: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: mes})
-export const sendMessageDialogs = () => ({type: SEND_NEW_MESSAGE_TEXT})
