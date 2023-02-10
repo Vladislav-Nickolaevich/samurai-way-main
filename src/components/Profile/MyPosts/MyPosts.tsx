@@ -1,42 +1,44 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Posts/Post";
-import {ProfilePageType} from "../../../redux/store";
+import {ProfilePageType} from "../Profile";
 
-
-type MyPostsDispatchType = {
+type MyPostsType = {
     updateNewPostText: (text: string) => void
     addPost: () => void
     posts: ProfilePageType
 }
 
-const MyPosts = (props: MyPostsDispatchType) => {
+const MyPosts = (props: MyPostsType) => {
+    const {updateNewPostText, addPost, posts} = props
     let newText = React.createRef<HTMLTextAreaElement>()
+
     const addPostHandler = () => {
         if (newText.current?.value?.trim() !== '') {
-            props.addPost()
+            addPost()
         }
     }
 
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = newText.current?.value
-        if (text){
-            props.updateNewPostText(text)
+        if (text) {
+            updateNewPostText(text)
         }
     }
+
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newText} value={props.posts.newPostText} onChange={onChangeTextarea}/>
+                    <textarea ref={newText} value={posts.newPostText} onChange={onChangeTextarea}/>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add posts</button>
                 </div>
             </div>
             <div className={s.posts}>
-                <Post posts={props.posts.posts}/>
+                <Post posts={posts.posts}/>
             </div>
         </div>
     );

@@ -8,26 +8,27 @@ export type SidebarType = {
     id: string
     path: string
 }
-
 export type NavbarType = {
     sidebar: SidebarType[]
     friends: FriendsType
 }
 type NavbarArray = {
-    navbar: NavbarType
+    state: NavbarType
 }
+
 export const Navbar = (props:NavbarArray) => {
+    const {state} = props
     return (
         <nav className={navClasses.nav}>
-            {props.navbar.sidebar.map(el => {
+            {state.sidebar.map(el => {
                 return (
                     <div className={navClasses.item}  key={el.id}>
                         <NavLink  to={el.path}>{el.title}</NavLink>
                     </div>
                 );
             })}
-            <Friends title={props.navbar.friends.title}
-                     imgFriends={props.navbar.friends.imgFriends}/>
+            <Friends title={state.friends.title}
+                     imgFriends={state.friends.imgFriends}/>
         </nav>
     );
 };

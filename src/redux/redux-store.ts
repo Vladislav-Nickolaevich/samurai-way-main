@@ -6,10 +6,10 @@ import navbarReducer from "./navbar-reducer";
 
 let reducers = combineReducers({
     navbar: navbarReducer,
-    profilePage:profilePageReducer,
-    messagesPage:messagesPageReducer,
+    profilePage: profilePageReducer,
+    messagesPage: messagesPageReducer,
 })
 
-let store = createStore(reducers);
+let store = createStore(reducers)
 export type AppRootStateType = ReturnType<typeof reducers>
 export default store

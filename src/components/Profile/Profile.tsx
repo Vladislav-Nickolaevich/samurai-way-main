@@ -1,12 +1,16 @@
 import React from 'react';
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {ProfilePageType} from "../../redux/store";
+import {PostType} from "./MyPosts/Posts/Post";
+import {AppRootStateType} from "../../redux/redux-store";
 
+export type ProfilePageType = {
+    posts: PostType[]
+    newPostText: string
+}
 type ProfileType = {
-    posts: ProfilePageType
+    state: AppRootStateType
     dispatch: (action: any) => void
-    // state: AppRootStateType
 }
 export const Profile = (props: ProfileType) => {
     const profileInfoImg = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
@@ -17,8 +21,7 @@ export const Profile = (props: ProfileType) => {
                 img={profileInfoImg}
                 titleError={'Image is not found'}
             />
-            <MyPostsContainer dispatch={props.dispatch} posts={props.posts}/>
-            {/*<MyPostsContainer state={props.state}/>*/}
+            <MyPostsContainer dispatch={props.dispatch} state={props.state}/>
         </div>
 
     );

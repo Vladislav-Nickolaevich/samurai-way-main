@@ -5,7 +5,7 @@ import React from "react";
 import store, {AppRootStateType} from './redux/redux-store'
 
 
-let  rerenderEntireTree = (state: AppRootStateType) => {
+let rerenderEntireTree = (state: AppRootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <App

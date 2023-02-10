@@ -11,6 +11,7 @@ export type PostType = {
 type PostsArrType = {
     posts: PostType[]
 }
+
 export const Post = (props: PostsArrType) => {
     return (
             <div className={PostsClasses.red}>

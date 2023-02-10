@@ -11,33 +11,33 @@ import {Dialogs} from "./components/Dialogs/Dialogs";
 import {path} from "./components/Constans/Constans";
 import {AppRootStateType} from "./redux/redux-store";
 
+
 export type AppStateType = {
     dispatch: (action: any) => void
     state: AppRootStateType
 }
 
 const App = (props: AppStateType) => {
-    const {profilePage, navbar, messagesPage} = props.state
+    const {dispatch, state} = props
 
     const headerImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ-DfbDa_apFhyZF4tENuL5UWFIb3lCtHK5f2AqBlFJKf7PDGqVOfrGS73OpU27s975mI&usqp=CAU"
 
     return (
         <div className='app-wrapper'>
             <Header img={headerImg} titleError={'Image is not found'}/>
-            <Navbar navbar={navbar}/>
+            <Navbar state={state.navbar}/>
             <div className='app-wrapper-content'>
                 <Route path={path.DIALOGS} render={() =>
                     <Dialogs
-                        data={messagesPage}
-                        dispatch={props.dispatch}
+                        state={state.messagesPage}
+                        dispatch={dispatch}
                     />
                 }/>
 
                 <Route path={path.PROFILE} render={() =>
                     <Profile
-                        posts={profilePage}
-                        dispatch={props.dispatch}
-                        // state={props.state}
+                        state={state}
+                        dispatch={dispatch}
                     />}
                 />
 

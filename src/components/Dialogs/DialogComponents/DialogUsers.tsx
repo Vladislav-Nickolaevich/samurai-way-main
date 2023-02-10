@@ -1,16 +1,16 @@
 import React from 'react';
 import s from "../Dialogs.module.css";
 import {NavLink} from "react-router-dom";
-import {userNameType} from "../Dialogs";
+import {DialogType} from "../Dialogs";
 
 type DialogUsersType = {
-    userName: userNameType[]
+    state: DialogType
 }
 export const DialogUsers = (props:DialogUsersType) => {
 
     return (
         <div className={s.dialogsItems}>
-            {props.userName.map(d => {
+            {props.state.userName.map(d => {
                 return (
                     <div key={d.id} className={s.active}>
                         <NavLink to={'/dialogs/' + d.id}>
