@@ -19,20 +19,59 @@ export type DialogType = {
     newMessageText: string
 }
 
-type DataType = {
-    state: DialogType
-    dispatch: (action: any) => void
-}
+// type DataType = {
+//     state: DialogType
+//     dispatch: (action: any) => void
+// }
 
-export const Dialogs = (props:DataType) => {
+export const Dialogs = () => {
     return (
         <div className={s.dialogs}>
-            <DialogUsers state={props.state}/>
             <DialogMessageContainer
-                state={props.state}
-                dispatch={props.dispatch}
             />
         </div>
     );
 };
+
+
+
+
+
+
+
+
+
+
+// export type userNameType = {
+//     id: number
+//     userName: string
+//     img: string
+// }
+// export type messageType = {
+//     id: number
+//     message: string
+// }
+//
+// export type DialogType = {
+//     messages: messageType[]
+//     userName: userNameType[]
+//     newMessageText: string
+// }
+
+// type DataType = {
+//     state: DialogType
+//     dispatch: (action: any) => void
+// }
+
+// export const Dialogs = (props:DataType) => {
+//     return (
+//         <div className={s.dialogs}>
+//             <DialogUsers state={props.state}/>
+//             <DialogMessageContainer
+//                 state={props.state}
+//                 dispatch={props.dispatch}
+//             />
+//         </div>
+//     );
+// };
 

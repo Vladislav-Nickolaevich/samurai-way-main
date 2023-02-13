@@ -1,11 +1,9 @@
 import React, {ChangeEvent} from 'react';
 import s from "../Dialogs.module.css";
-import {sendMessageDialogs, updateMessageDialogs} from "../../../redux/messagesPage-reducer";
 import {DialogType} from "../Dialogs";
 
 type DialogMessageType = {
     posts: DialogType
-    // dispatch: (action: any) => void
     updateNewMessageText: (text: string) => void
     addMessageText: () => void
 }

@@ -1,30 +1,57 @@
 import React from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profilePage-reducer";
 import MyPosts from "./MyPosts";
-import {AppRootStateType} from "../../../redux/redux-store";
+import StoreContext from '../../../StoreContext';
 
-type MyPostsDispatchType = {
-    state: AppRootStateType
-    dispatch: (action: any) => void
-}
 
-const MyPostsContainer = (props: MyPostsDispatchType) => {
-    const addPostHandler = () => props.dispatch(addPostActionCreator())
-
-    const onChangeTextarea = (text: string) => {
-        if (text) {
-            let action = updateNewPostTextActionCreator(text)
-            props.dispatch(action)
-        }
-    }
-
+const MyPostsContainer = () => {
     return (
-        <MyPosts
-            updateNewPostText={onChangeTextarea}
-            addPost={addPostHandler}
-            posts={props.state.profilePage}
-        />
+        <StoreContext.Consumer>
+            {store => {
+                let state = store.getState()
+                const addPostHandler = () => store.dispatch(addPostActionCreator())
+
+                const onChangeTextarea = (text: string) => {
+                    if (text) {
+                        let action = updateNewPostTextActionCreator(text)
+                        store.dispatch(action)
+                    }
+                }
+                return <MyPosts
+                    updateNewPostText={onChangeTextarea}
+                    addPost={addPostHandler}
+                    posts={state.profilePage}
+                />
+            }
+            }
+        </StoreContext.Consumer>
+
     );
 };
+
+
+// type MyPostsDispatchType = {
+//     state: AppRootStateType
+//     dispatch: (action: any) => void
+// }
+// const MyPostsContainer = (props: MyPostsDispatchType) => {
+//     const addPostHandler = () => props.dispatch(addPostActionCreator())
+//
+//     const onChangeTextarea = (text: string) => {
+//         if (text) {
+//             let action = updateNewPostTextActionCreator(text)
+//             props.dispatch(action)
+//         }
+//     }
+//
+//     return (
+//         <MyPosts
+//             updateNewPostText={onChangeTextarea}
+//             addPost={addPostHandler}
+//             posts={props.state.profilePage}
+//         />
+//     );
+// };
+
 
 export default MyPostsContainer;
