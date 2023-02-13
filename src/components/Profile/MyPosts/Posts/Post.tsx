@@ -8,11 +8,11 @@ export type PostType = {
     likeCounts: number
     errorMes: string
 }
-type PostsArrType = {
+type PostsPropsType = {
     posts: PostType[]
 }
 
-export const Post = (props: PostsArrType) => {
+export const Post = (props: PostsPropsType) => {
     return (
             <div className={PostsClasses.red}>
                 {props.posts.map(p => {

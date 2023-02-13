@@ -30,28 +30,6 @@ const MyPostsContainer = () => {
 };
 
 
-// type MyPostsDispatchType = {
-//     state: AppRootStateType
-//     dispatch: (action: any) => void
-// }
-// const MyPostsContainer = (props: MyPostsDispatchType) => {
-//     const addPostHandler = () => props.dispatch(addPostActionCreator())
-//
-//     const onChangeTextarea = (text: string) => {
-//         if (text) {
-//             let action = updateNewPostTextActionCreator(text)
-//             props.dispatch(action)
-//         }
-//     }
-//
-//     return (
-//         <MyPosts
-//             updateNewPostText={onChangeTextarea}
-//             addPost={addPostHandler}
-//             posts={props.state.profilePage}
-//         />
-//     );
-// };
 
 
 export default MyPostsContainer;

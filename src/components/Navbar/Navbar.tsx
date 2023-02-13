@@ -1,32 +1,22 @@
 import React from 'react';
-import {FriendsType} from "./Friends/Friends";
 import {NavbarContainer} from "./NavbarContainer";
+import {SidebarType} from "./Sidebar";
+import {FriendsType} from "./Friends/Friends";
+import navClasses from "./Navbar.module.css";
 
-export type SidebarType = {
-    title: string
-    id: string
-    path: string
-}
+
 export type NavbarType = {
     sidebar: SidebarType[]
     friends: FriendsType
 }
 
-
 export const Navbar = () => {
     return (
-        <NavbarContainer/>
+        <nav className={navClasses.nav}>
+            <NavbarContainer/>
+        </nav>
     );
 };
-
-
-
-
-
-
-
-
-
 
 
 // export type SidebarType = {

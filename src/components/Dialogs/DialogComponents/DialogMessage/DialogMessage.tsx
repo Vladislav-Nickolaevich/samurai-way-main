@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
-import s from "../Dialogs.module.css";
-import {DialogType} from "../Dialogs";
+import s from "../../Dialogs.module.css";
+import {DialogType} from "../../Dialogs";
 
 type DialogMessageType = {
     posts: DialogType

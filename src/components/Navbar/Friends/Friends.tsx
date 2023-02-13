@@ -1,14 +1,14 @@
 import React from 'react';
 import f from './Friends.module.css'
 
-type ImgFriends = {
+type ImgFriendsType = {
     id: number
     img: string
     err: string
 }
 export type FriendsType = {
     title: string
-    imgFriends: ImgFriends[]
+    imgFriends: ImgFriendsType[]
 }
 
 export const Friends = (props: FriendsType) => {

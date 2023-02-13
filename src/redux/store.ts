@@ -1,6 +1,6 @@
 import {NavbarType} from "../components/Navbar/Navbar";
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
-import {ProfilePageType} from "../components/Profile/Profile";
+import {ProfilePageType} from "../components/Profile/MyPosts/MyPosts";
 
 
 

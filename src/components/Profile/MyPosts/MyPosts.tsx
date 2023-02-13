@@ -1,12 +1,15 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
-import {Post} from "./Posts/Post";
-import {ProfilePageType} from "../Profile";
+import {Post, PostType} from "./Posts/Post";
 
 type MyPostsType = {
     updateNewPostText: (text: string) => void
     addPost: () => void
     posts: ProfilePageType
+}
+export type ProfilePageType = {
+    posts: PostType[]
+    newPostText: string
 }
 
 const MyPosts = (props: MyPostsType) => {

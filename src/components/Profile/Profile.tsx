@@ -1,8 +1,8 @@
 import React from 'react';
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {PostType} from "./MyPosts/Posts/Post";
-import {AppRootStateType} from "../../redux/redux-store";
+
+
 
 export const Profile = () => {
     const profileInfoImg = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
@@ -15,7 +15,6 @@ export const Profile = () => {
             />
             <MyPostsContainer/>
         </div>
-
     );
 };
 
@@ -30,10 +29,10 @@ export const Profile = () => {
 
 
 
-export type ProfilePageType = {
-    posts: PostType[]
-    newPostText: string
-}
+// export type ProfilePageType = {
+//     posts: PostType[]
+//     newPostText: string
+// }
 // type ProfileType = {
 //     state: AppRootStateType
 //     dispatch: (action: any) => void

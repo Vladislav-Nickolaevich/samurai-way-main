@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {DialogUsers} from "./DialogComponents/DialogUsers";
-import {DialogMessageContainer} from "./DialogComponents/DialogMessageContainer";
+import {DialogsContainer} from "./DialogsContainer";
 
 export type userNameType = {
     id: number
@@ -19,16 +18,10 @@ export type DialogType = {
     newMessageText: string
 }
 
-// type DataType = {
-//     state: DialogType
-//     dispatch: (action: any) => void
-// }
-
 export const Dialogs = () => {
     return (
         <div className={s.dialogs}>
-            <DialogMessageContainer
-            />
+            <DialogsContainer/>
         </div>
     );
 };
@@ -67,7 +60,7 @@ export const Dialogs = () => {
 //     return (
 //         <div className={s.dialogs}>
 //             <DialogUsers state={props.state}/>
-//             <DialogMessageContainer
+//             <DialogsContainer
 //                 state={props.state}
 //                 dispatch={props.dispatch}
 //             />
