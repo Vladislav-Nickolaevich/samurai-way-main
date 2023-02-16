@@ -6,10 +6,6 @@ import {AppRootStateType} from "../../redux/redux-store";
 import {Action, Dispatch} from "redux";
 
 
-
-// /*<DialogUsers state={store.getState().messagesPage}/>*/}
-
-
 const mapStateToProps = (state: AppRootStateType) => {
     return {
         posts: state.messagesPage

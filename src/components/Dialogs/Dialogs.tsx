@@ -1,6 +1,8 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {DialogsContainer} from "./DialogsContainer";
+import {DialogMessage} from "./DialogComponents/DialogMessage/DialogMessage";
+import {DialogUsers} from "./DialogComponents/DialogUsers/DialogUsers";
+import {DialogType} from "../../redux/messagesPage-reducer";
 
 export type userNameType = {
     id: number
@@ -12,59 +14,26 @@ export type messageType = {
     message: string
 }
 
-export type DialogType = {
-    messages: messageType[]
-    userName: userNameType[]
-    newMessageText: string
+type DialogsPropsType = {
+    posts: DialogType
+    addMessageText: () => void
+    updateNewMessageText: (text: string) => void
 }
 
-export const Dialogs = () => {
+export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
-            <DialogsContainer/>
+            <DialogMessage
+                posts={props.posts.messages}
+                updateNewMessageText={props.updateNewMessageText}
+                addMessageText={props.addMessageText}
+                newDialogText={props.posts.newMessageText}
+            />
+            <DialogUsers
+                state={props.posts.userName}
+            />
         </div>
     );
 };
 
-
-
-
-
-
-
-
-
-
-// export type userNameType = {
-//     id: number
-//     userName: string
-//     img: string
-// }
-// export type messageType = {
-//     id: number
-//     message: string
-// }
-//
-// export type DialogType = {
-//     messages: messageType[]
-//     userName: userNameType[]
-//     newMessageText: string
-// }
-
-// type DataType = {
-//     state: DialogType
-//     dispatch: (action: any) => void
-// }
-
-// export const Dialogs = (props:DataType) => {
-//     return (
-//         <div className={s.dialogs}>
-//             <DialogUsers state={props.state}/>
-//             <DialogsContainer
-//                 state={props.state}
-//                 dispatch={props.dispatch}
-//             />
-//         </div>
-//     );
-// };
 

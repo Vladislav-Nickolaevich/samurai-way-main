@@ -1,5 +1,10 @@
-import {DialogType} from "../components/Dialogs/Dialogs";
+import {messageType, userNameType} from "../components/Dialogs/Dialogs";
 
+export type DialogType = {
+    messages: messageType[]
+    userName: userNameType[]
+    newMessageText: string
+}
 export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
 

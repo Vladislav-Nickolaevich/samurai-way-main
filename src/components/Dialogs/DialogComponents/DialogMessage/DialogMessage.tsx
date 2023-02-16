@@ -1,17 +1,18 @@
 import React, {ChangeEvent} from 'react';
 import s from "../../Dialogs.module.css";
-import {DialogType} from "../../Dialogs";
+import {messageType} from "../../Dialogs";
 
 type DialogMessageType = {
-    posts: DialogType
+    posts: messageType[]
     updateNewMessageText: (text: string) => void
     addMessageText: () => void
+    newDialogText: string
 }
 export const DialogMessage = (props: DialogMessageType) => {
-    const {posts, updateNewMessageText, addMessageText} = props
-    let newMessage = posts.newMessageText
+    const {posts, updateNewMessageText, addMessageText, newDialogText} = props
+    let newText = newDialogText
     const addMessage = () => {
-        if (newMessage.trim() !== '') {
+        if (newText.trim() !== '') {
             addMessageText()
         }
     }
@@ -23,14 +24,14 @@ export const DialogMessage = (props: DialogMessageType) => {
     }
     return (
         <div className={s.messages}>
-            {posts.messages.map(d => {
+            {posts.map(d => {
                 return (
                     <div className={s.message} key={d.id}>
                         {d.message}
                     </div>
                 )
             })}
-            <textarea value={newMessage} onChange={onChangeTextarea}></textarea>
+            <textarea value={newText} onChange={onChangeTextarea}></textarea>
             <button onClick={addMessage}>Send</button>
         </div>
     )

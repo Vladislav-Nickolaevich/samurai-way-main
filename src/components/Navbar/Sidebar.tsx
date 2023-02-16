@@ -17,8 +17,10 @@ export const Sidebar = (props:SidebarPropsType) => {
         <div>
             {props.sidebar.map(s => {
                 return (
-                    <div className={navClasses.item}  key={s.id}>
-                        <NavLink  to={s.path}>{s.title}</NavLink>
+                    <div className={navClasses.item} key={s.id}>
+                        <NavLink to={s.path}>
+                            {s.title}
+                        </NavLink>
                     </div>
                 );
             })}

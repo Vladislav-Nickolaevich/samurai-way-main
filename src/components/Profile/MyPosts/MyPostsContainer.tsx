@@ -8,7 +8,7 @@ import {Action, Dispatch} from "redux";
 
 const mapStateToProps = (state: AppRootStateType) => {
     return {
-        posts:  state.profilePage
+        posts: state.profilePage,
     }
 }
 const  dispatchStateToProps = (dispatch: Dispatch<Action>) => {
