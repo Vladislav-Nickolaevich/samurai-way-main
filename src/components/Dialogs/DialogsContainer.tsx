@@ -1,38 +1,29 @@
 import React from 'react';
 import {sendMessageDialogs, updateMessageDialogs} from "../../redux/messagesPage-reducer";
-import {DialogMessage} from "./DialogComponents/DialogMessage/DialogMessage";
-import StoreContext from '../../StoreContext';
-import {DialogUsers} from "./DialogComponents/DialogUsers/DialogUsers";
+import {connect} from "react-redux";
+import {Dialogs} from "./Dialogs";
+import {AppRootStateType} from "../../redux/redux-store";
+import {Action, Dispatch} from "redux";
 
 
 
-export const DialogsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-            const addMessage = () => store.dispatch(sendMessageDialogs())
+// /*<DialogUsers state={store.getState().messagesPage}/>*/}
 
-            const onChangeTextarea = (text: string) => {
-                if (text) {
-                    let action = updateMessageDialogs(text)
-                    store.dispatch(action)
-                }
-            }
-            return (<>
-                    <DialogMessage
-                        posts={store.getState().messagesPage}
-                        updateNewMessageText={onChangeTextarea}
-                        addMessageText={addMessage}
-                    />
-                    <DialogUsers state={store.getState().messagesPage}/>
-                </>
-            )
+
+const mapStateToProps = (state: AppRootStateType) => {
+    return {
+        posts: state.messagesPage
+    }
+}
+const mapDispatchToProps = (dispatch:  Dispatch<Action>) => {
+    return {
+        addMessageText: () => {
+            dispatch(sendMessageDialogs())
+        },
+        updateNewMessageText: (text: string) => {
+            dispatch(updateMessageDialogs(text))
         }
-        }
-        </StoreContext.Consumer>
-
-
-    );
+    }
 }
 
-
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
