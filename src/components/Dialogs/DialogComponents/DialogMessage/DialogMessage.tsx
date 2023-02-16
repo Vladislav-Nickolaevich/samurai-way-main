@@ -11,14 +11,16 @@ type DialogMessageType = {
 export const DialogMessage = (props: DialogMessageType) => {
     const {posts, updateNewMessageText, addMessageText, newDialogText} = props
     let newText = newDialogText
+    console.log(newText)
     const addMessage = () => {
         if (newText.trim() !== '') {
             addMessageText()
         }
     }
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newMessage = e.target?.value
+        let newMessage = e.currentTarget?.value
         if (newMessage) {
+            console.log(newMessage)
             updateNewMessageText(newMessage)
         }
     }

@@ -10,7 +10,7 @@ export type userNameType = {
     img: string
 }
 export type messageType = {
-    id: number
+    id: string
     message: string
 }
 

@@ -1,4 +1,5 @@
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
+import {v1} from "uuid";
 
 export type DialogType = {
     messages: messageType[]
@@ -10,10 +11,10 @@ export const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
 
 let initialState = {
         messages: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: 'What is the best country for travelling?'},
-            {id: 3, message: 'I like country with sea'},
-            {id: 4, message: 'I want to see interesting places'},
+            {id: '1', message: 'Hi'},
+            {id: '2', message: 'What is the best country for travelling?'},
+            {id: '3', message: 'I like country with sea'},
+            {id: '4', message: 'I want to see interesting places'},
         ],
         userName: [
             {
@@ -44,13 +45,14 @@ let initialState = {
 const messagesPageReducer = (state: DialogType = initialState, action: any): DialogType => {
     switch (action.type){
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageText
-            return state
+            return {
+                ...state, newMessageText: action.newMessageText
+            }
         case SEND_NEW_MESSAGE_TEXT:
-            let newMessage = {id: 5, message: state.newMessageText}
-            state.newMessageText = ''
-            state.messages.push(newMessage)
-            return state
+            let newMessage = {id: v1(), message: state.newMessageText}
+            return {
+                ...state, messages: [...state.messages, newMessage], newMessageText: ''
+            }
         default:
             return state
     }
