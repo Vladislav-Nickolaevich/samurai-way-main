@@ -19,6 +19,8 @@ const MyPosts = (props: MyPostsType) => {
     const addPostHandler = () => {
         if (newText.current?.value?.trim() !== '') {
             addPost()
+        } else {
+            updateNewPostText('')
         }
     }
 
