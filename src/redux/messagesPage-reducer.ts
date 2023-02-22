@@ -8,7 +8,6 @@ export type DialogType = {
 }
 export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
-
 let initialState = {
         messages: [
             {id: '1', message: 'Hi'},

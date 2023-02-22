@@ -18,11 +18,7 @@ export const DialogMessage = (props: DialogMessageType) => {
         }
     }
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newMessage = e.currentTarget?.value
-        if (newMessage) {
-            console.log(newMessage)
-            updateNewMessageText(newMessage)
-        }
+            updateNewMessageText(e.currentTarget?.value)
     }
     return (
         <div className={s.messages}>

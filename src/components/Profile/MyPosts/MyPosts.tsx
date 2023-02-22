@@ -23,10 +23,7 @@ const MyPosts = (props: MyPostsType) => {
     }
 
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = newText.current?.value
-        if (text) {
-            updateNewPostText(text)
-        }
+            updateNewPostText(e.currentTarget?.value)
     }
 
     return (

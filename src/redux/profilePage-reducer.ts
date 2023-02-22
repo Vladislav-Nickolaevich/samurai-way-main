@@ -34,6 +34,7 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
                 photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
                 errorMes: 'Image not found'
             }
+
             return {
                 ...state, posts: [...state.posts, newPost], newPostText: ''
             }
