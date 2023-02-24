@@ -4,5 +4,6 @@ export const path = {
     DIALOGS: '/dialogs',
     NEWS: '/news',
     MUSIC: '/music',
-    SETTINGS: '/settings'
+    SETTINGS: '/settings',
+    USERS: '/users'
 }
