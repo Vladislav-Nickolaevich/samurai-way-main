@@ -1,0 +1,27 @@
+import React from 'react';
+import {connect} from "react-redux";
+import {Users, UserType} from "./Users";
+import {AppRootStateType} from "../../redux/redux-store";
+import {Action, Dispatch} from "redux";
+import {followAC, setUsersAC, unfollowAC} from "../../redux/users-reducer";
+
+const mapStateToProps = (state: AppRootStateType) => {
+    return {
+        users: state.usersPage.users   // ЛИБО ТУТ ОШИБКА
+    }
+}
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
+    return {
+        follow: (userId: string) => {
+            dispatch(followAC(userId))
+        },
+        unfollow: (userId:string) => {
+            dispatch(unfollowAC(userId))
+        },
+        setUsers: (users:UserType) => {
+            dispatch(setUsersAC(users))
+        }
+    }
+}
+
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users); // ЛИБО ТУТ ОШИБКА

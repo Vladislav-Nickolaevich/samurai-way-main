@@ -1,10 +1,34 @@
 import React from 'react';
 
-export const Users = () => {
+export type LocationType = {
+    city: string,
+    country: string
+}
+export type UserType = {
+    id: string,
+    followed: boolean,
+    fullName: string,
+    status: string,
+    location:LocationType
+}
+
+type UsersPropsType = {
+    users: UserType[]
+    follow: (userId: string) => void
+    unfollow: (userId:string) => void
+    setUsers: (users:UserType) => void
+}
+
+
+export const Users = (props: UsersPropsType) => {
     return (
-        <div>
-            Users here
-        </div>
+        <>
+            {/*{props.users.map(u => {*/}
+            {/*    return (*/}
+            {/*        <div key={u.id}>{u.fullName}</div>*/}
+            {/*    )*/}
+            {/*})}*/}
+        </>
     );
 };
 

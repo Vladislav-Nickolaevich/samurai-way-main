@@ -1,24 +1,14 @@
 import {v1} from "uuid";
+import {UserType} from "../components/Users/Users";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
-type LocationType = {
-    city: string,
-    country: string
-}
-type UsersType = {
-    id: string,
-    followed: boolean,
-    fullName: string,
-    status: string,
-    location:LocationType
-}
-type StateUsersType = {
-    users: UsersType[]
-}
 
+export type UsersType = {
+ users: UserType[]
+}
 let initialState = {
     users: [
         {id: v1(), followed: false, fullName: 'George', status: 'Successful man',
@@ -38,7 +28,8 @@ let initialState = {
 
 
 
-const userReducer = (state : StateUsersType= initialState, action: any) => {
+// const userReducer = (state: UsersType = initialState, action: any): UsersType | undefined  => {   // ЛИБО ТУТ ОШИБКА
+const userReducer = (state: UsersType = initialState, action: any): UsersType => { // ЛИБО ТУТ ОШИБКА
     switch (action.type) {
         case FOLLOW:
             return {
@@ -57,12 +48,14 @@ const userReducer = (state : StateUsersType= initialState, action: any) => {
                 ...state,
                 users: [...state.users, ...action.users]
             }
+        default:
+           return state
     }
 }
 
 export const followAC = (userId: string) => ({type: FOLLOW, userId})
 export const unfollowAC = (userId: string) => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users:UsersType) => ({type: SET_USERS})
+export const setUsersAC = (users:UserType) => ({type: SET_USERS, users})
 
 export default userReducer
 

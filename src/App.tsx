@@ -9,7 +9,7 @@ import {News} from "./components/News/News";
 import {path} from "./components/Constans/Constans";
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {Users} from "./components/Users/Users";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 
 const App = () => {
@@ -27,7 +27,7 @@ const App = () => {
                 <Route path={path.NEWS} render={() => <News/>}/>
                 <Route path={path.MUSIC} render={() => <Music/>}/>
                 <Route path={path.SETTINGS} render={() => <Settings/>}/>
-                <Route path={path.USERS} render={() => <Users/>}/>
+                <Route path={path.USERS} render={() => <UsersContainer/>}/>
             </div>
         </div>
     );
