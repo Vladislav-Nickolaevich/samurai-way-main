@@ -9,26 +9,9 @@ const SET_USERS = 'SET_USERS'
 export type UsersType = {
     users: UserType[]
 }
-let img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/John_Cena_July_2018.jpg/1200px-John_Cena_July_2018.jpg'
+
 let initialState = {
-    users: [
-        {
-            id: v1(), photoUrl: img, followed: false, fullName: 'George', status: 'Successful man',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: v1(), photoUrl: img, followed: true, fullName: 'John', status: 'Dreamer..',
-            location: {city: 'Los Angeles', country: 'USA'}
-        },
-        {
-            id: v1(), photoUrl: img, followed: false, fullName: 'Viktoria', status: 'Woman with the right habits',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: v1(), photoUrl: img, followed: true, fullName: 'Ann', status: 'Just Ann:)',
-            location: {city: 'Brest', country: 'Belarus'}
-        },
-    ]
+    users: []
 }
 
 
