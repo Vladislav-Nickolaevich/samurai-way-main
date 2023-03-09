@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {connect} from "react-redux";
 import {Users, UserType} from "./Users";
 import {AppRootStateType} from "../../redux/redux-store";
