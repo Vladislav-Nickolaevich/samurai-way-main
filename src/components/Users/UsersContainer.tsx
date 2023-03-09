@@ -12,10 +12,10 @@ const mapStateToProps = (state: AppRootStateType) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
     return {
-        followed: (userId: string) => {
+        followed: (userId: number) => {
             dispatch(followAC(userId))
         },
-        unfollowed: (userId:string) => {
+        unfollowed: (userId:number) => {
             dispatch(unfollowAC(userId))
         },
         setUsers: (users:UserType[]) => {
