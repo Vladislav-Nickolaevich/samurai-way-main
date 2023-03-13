@@ -1,4 +1,3 @@
-import {v1} from "uuid";
 import {UserType} from "../components/Users/Users";
 
 const FOLLOW = 'FOLLOW'

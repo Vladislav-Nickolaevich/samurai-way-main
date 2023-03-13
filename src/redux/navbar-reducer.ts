@@ -10,6 +10,7 @@ let initialState = {
             {id: v1(), path: path.NEWS, title: 'News'},
             {id: v1(), path: path.MUSIC, title: 'Music'},
             {id: v1(), path: path.SETTINGS, title: 'Settings'},
+            {id: v1(), path: path.USERS, title: 'Users'},
         ],
         friends: {
             title: 'Friends',
