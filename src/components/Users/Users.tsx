@@ -23,48 +23,52 @@ type UsersPropsType = {
 }
 
 
-export const Users = (props: UsersPropsType) => {
-    const getUsers = () => {
-        if (props.users.length === 0) {
+class Users extends React.Component<UsersPropsType>{
+    getUsers = () => {
+        if (this.props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users')
                 .then(response => {
-                    props.setUsers(response.data.items)
+                    this.props.setUsers(response.data.items)
                 })
         }
     }
-    return (
-        <>
-            <button onClick={getUsers}>Get users</button>
-            {props.users.map(u => {
-                return (
-                    <div key={u.id}>
+    render(){
+        return (
+            <div>
+                <button onClick={this.getUsers}>Get users</button>
+                {this.props.users.map(u => {
+                    return (
+                        <div key={u.id}>
                         <span>
                             <div>
                                 <img src={profileImg} style={{width: '60px'}} alt="Упс, ошибка"/>
                             </div>
                             <div>{u.followed
                                 ? <button onClick={() => {
-                                    props.followed(u.id)
+                                    this.props.followed(u.id)
                                 }}>Follow</button>
                                 : <button onClick={() => {
-                                    props.unfollowed(u.id)
+                                    this.props.unfollowed(u.id)
                                 }}>Unfollow</button>}
                             </div>
                         </span>
-                        <span>
+                            <span>
                             <span>
                                 <div>{u.name}</div>
-                                {/*<div>{u.status}</div>*/}
                             </span>
                             <span>
                                 <div>{'u.location.country'}</div>
                                 <div>{'u.location.city'}</div>
                             </span>
                         </span>
-                    </div>
-                )
-            })}
-        </>
-    );
-};
+                        </div>
+                    )
+                })}
+            </div>
+        );
+    }
+}
+
+export default Users
+
 

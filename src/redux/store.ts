@@ -2,18 +2,16 @@ import {NavbarType} from "../components/Navbar/Navbar";
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
 import {ProfilePageType} from "../components/Profile/MyPosts/MyPosts";
 
-
-
-export type MessagesPageType = {
-    userName: userNameType[]
-    messages: messageType[]
-    newMessageText: string
-}
-export type AppType = {
-    navbar: NavbarType
-    messagesPage: MessagesPageType
-    profilePage: ProfilePageType
-}
+// export type MessagesPageType = {
+//     userName: userNameType[]
+//     messages: messageType[]
+//     newMessageText: string
+// }
+// export type AppType = {
+//     navbar: NavbarType
+//     messagesPage: MessagesPageType
+//     profilePage: ProfilePageType
+// }
 
 
 // export type StoreType = {_state: AppType, _callSubscriber(state: AppType): void, getState(): AppType, subscribe(observer: (state: AppType) => void): void, dispatch(action: any): void}
