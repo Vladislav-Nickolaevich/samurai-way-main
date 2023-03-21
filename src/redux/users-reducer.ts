@@ -7,10 +7,16 @@ const SET_USERS = 'SET_USERS'
 
 export type UsersType = {
     users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 let initialState = {
-    users: []
+    users: [],
+    pageSize: 3,
+    totalUsersCount: 14,
+    currentPage: 1
 }
 
 

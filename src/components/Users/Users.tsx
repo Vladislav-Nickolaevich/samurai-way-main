@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
 import profileImg from '../../assets/images/profileImg.png'
+import user from './Users.module.css'
+
 
 export type LocationType = {
     city: string,
@@ -20,10 +22,13 @@ type UsersPropsType = {
     followed: (userId: number) => void
     unfollowed: (userId: number) => void
     setUsers: (users: UserType[]) => void
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 
-class Users extends React.Component<UsersPropsType>{
+class Users extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
@@ -32,15 +37,26 @@ class Users extends React.Component<UsersPropsType>{
             })
     }
 
-    render(){
+    render() {
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+        let pages = []
+        for (let i = 1; i <= pagesCount; i++){
+            pages.push(i)
+        }
         return (
             <div>
+                <div>
+                    {pages.map(p => {
+                        return <span  className={this.props.currentPage === p? user.selectedPage: ''}>{p}</span>
+                    })}
+
+                </div>
                 {this.props.users.map(u => {
                     return (
                         <div key={u.id}>
                         <span>
                             <div>
-                                <img src={profileImg} style={{width: '60px'}} alt="Упс, ошибка"/>
+                                <img src={profileImg} className={user.photo} alt="Упс, ошибка"/>
                             </div>
                             <div>{u.followed
                                 ? <button onClick={() => {
