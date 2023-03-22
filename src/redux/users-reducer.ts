@@ -2,7 +2,8 @@ import {UserType} from "../components/Users/Users";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET_USERS'
+const SET_USERS = 'SET-USERS'
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 
 
 export type UsersType = {
@@ -16,7 +17,7 @@ let initialState = {
     users: [],
     pageSize: 3,
     totalUsersCount: 14,
-    currentPage: 1
+    currentPage: 2
 }
 
 
@@ -39,6 +40,12 @@ const userReducer = (state: UsersType = initialState, action: any): UsersType =>
                 ...state,
                 users: [...state.users, ...action.users]
             }
+        case SET_CURRENT_PAGE:{
+            return{
+                ...state,
+                currentPage: action.currentPage
+            }
+        }
         default:
             return state
     }
@@ -47,6 +54,7 @@ const userReducer = (state: UsersType = initialState, action: any): UsersType =>
 export const followAC = (userId: number) => ({type: FOLLOW, userId})
 export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users: UserType[]) => ({type: SET_USERS, users})
+export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage})
 
 export default userReducer
 
