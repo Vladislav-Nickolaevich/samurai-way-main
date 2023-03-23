@@ -1,7 +1,7 @@
 import React from 'react';
 import user from "./Users.module.css";
 import profileImg from "../../assets/images/profileImg.png";
-import {UserType} from "./UsersAPIComponent";
+import {UserType} from "./UsersContainer";
 
 type UsersPropsType = {
     totalUsersCount: number

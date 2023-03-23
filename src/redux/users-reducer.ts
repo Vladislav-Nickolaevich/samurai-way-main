@@ -1,4 +1,4 @@
-import {UserType} from "../components/Users/UsersAPIComponent";
+import {UserType} from "../components/Users/UsersContainer";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
