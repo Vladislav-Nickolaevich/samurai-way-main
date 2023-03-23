@@ -14,7 +14,9 @@ type UsersPropsType = {
 }
 
 const Users = (props: UsersPropsType) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    const {totalUsersCount, users, pageSize, onPageChanged, currentPage, unfollowed, followed} = props
+
+    let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
@@ -26,9 +28,9 @@ const Users = (props: UsersPropsType) => {
                     return (
                         <span
                             key={p}
-                            className={props.currentPage === p ? user.selectedPage : ''}
+                            className={currentPage === p ? user.selectedPage : ''}
                             onClick={(e) => {
-                                props.onPageChanged(p)
+                                onPageChanged(p)
                             }}
                         >
                                 {p + ' '}
@@ -37,7 +39,7 @@ const Users = (props: UsersPropsType) => {
                 })}
 
             </div>
-            {props.users.map(u => {
+            {users.map(u => {
                 return (
                     <div key={u.id}>
                         <span>
@@ -46,10 +48,10 @@ const Users = (props: UsersPropsType) => {
                             </div>
                             <div>{u.followed
                                 ? <button onClick={() => {
-                                    props.followed(u.id)
+                                    followed(u.id)
                                 }}>Follow</button>
                                 : <button onClick={() => {
-                                    props.unfollowed(u.id)
+                                    unfollowed(u.id)
                                 }}>Unfollow</button>}
                             </div>
                         </span>
