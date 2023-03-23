@@ -2,9 +2,18 @@ import React from 'react'
 import {connect} from "react-redux";
 import {AppRootStateType} from "../../redux/redux-store";
 import {Action, Dispatch} from "redux";
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "../../redux/users-reducer";
-import axios from "axios";
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    toggleIsFetchingAC,
+    unfollowAC
+} from "../../redux/users-reducer";
+
 import Users from "./Users";
+import Preloader from "../../common/Preloader/Preloader";
+import axios from "axios";
 
 export type LocationType = {
     city: string,
@@ -28,37 +37,46 @@ type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    toggleIsFetching: (isFetching: boolean) => void
+    isFetching: boolean
 }
 
 
-class UsersAPIComponent extends React.Component<UsersPropsType> {
+class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
+        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
             })
     }
 
     onPageChanged = (pageNumber: number) => {
+        this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
             })
     }
 
     render() {
-        return <Users
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentPage={this.props.currentPage}
-            onPageChanged={this.onPageChanged}
-            users={this.props.users}
-            followed={this.props.followed}
-            unfollowed={this.props.unfollowed}
-        />
+        return <>
+            {this.props.isFetching ? <Preloader/> : null}
+            <Users
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                followed={this.props.followed}
+                unfollowed={this.props.unfollowed}
+            />
+        </>
     }
 }
 
@@ -67,7 +85,8 @@ const mapStateToProps = (state: AppRootStateType) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
@@ -75,10 +94,10 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
         followed: (userId: number) => {
             dispatch(followAC(userId))
         },
-        unfollowed: (userId:number) => {
+        unfollowed: (userId: number) => {
             dispatch(unfollowAC(userId))
         },
-        setUsers: (users:UserType[]) => {
+        setUsers: (users: UserType[]) => {
             dispatch(setUsersAC(users))
         },
         setCurrentPage: (pageNumber: number) => {
@@ -86,8 +105,11 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
         },
         setTotalUsersCount: (count: number) => {
             dispatch(setTotalUsersCountAC(count))
+        },
+        toggleIsFetching: (isFetching: boolean) => {
+            dispatch(toggleIsFetchingAC(isFetching))
         }
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
