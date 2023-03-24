@@ -23,7 +23,6 @@ const Users = (props: UsersPropsType) => {
     }
     return (
         <div>
-
             <div>
                 {pages.map(p => {
                     return (
@@ -45,7 +44,7 @@ const Users = (props: UsersPropsType) => {
                     <div key={u.id}>
                         <span>
                             <div>
-                                <img src={profileImg} className={user.photo} alt="Упс, ошибка"/>
+                                <img src={u.photos.small != null? u.photos.small: profileImg} className={user.photo} alt="Упс, ошибка"/>
                             </div>
                             <div>{u.followed
                                 ? <button onClick={() => {
