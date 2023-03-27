@@ -23,14 +23,14 @@ type DialogsPropsType = {
 export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
+            <DialogUsers
+                state={props.posts.userName}
+            />
             <DialogMessage
                 posts={props.posts.messages}
                 updateNewMessageText={props.updateNewMessageText}
                 addMessageText={props.addMessageText}
                 newDialogText={props.posts.newMessageText}
-            />
-            <DialogUsers
-                state={props.posts.userName}
             />
         </div>
     );

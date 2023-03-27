@@ -14,8 +14,10 @@ export const DialogUsers = (props:DialogUsersType) => {
                 return (
                     <div key={d.id} className={s.active}>
                         <NavLink to={'/dialogs/' + d.id}>
-                            <span>{d.userName}</span>
-                            <span><img src={d.img}/></span>
+                            <span>
+                                <img src={d.img}/>
+                            </span>
+                            <span> {d.userName}</span>
                         </NavLink>
                     </div>
                 )

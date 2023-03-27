@@ -13,6 +13,7 @@ import Users from "./Users";
 import Preloader from "../../common/Preloader/Preloader";
 import axios from "axios";
 import {AppRootStateType} from "../../redux/redux-store";
+import {PhotosType} from "../Profile/Profile";
 
 export type LocationType = {
     city: string,
@@ -20,7 +21,7 @@ export type LocationType = {
 }
 export type UserType = {
     id: number,
-    photos: {small: null | string},
+    photos: PhotosType
     followed: boolean,
     name: string,
     status: string,

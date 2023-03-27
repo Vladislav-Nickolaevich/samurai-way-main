@@ -1,8 +1,10 @@
 import {v1} from "uuid";
 import {ProfilePageType} from "../components/Profile/MyPosts/MyPosts";
+import {ProfileUserType} from "../components/Profile/Profile";
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+export const SET_USER_PROFILE = 'SET-USER-PROFILE'
 
 let initialState = {
     posts: [
@@ -21,7 +23,29 @@ let initialState = {
             errorMes: 'Image not found'
         },
     ],
-    newPostText: ''
+    newPostText: '',
+    // profile: null
+    profile: {
+        "aboutMe": "",
+        "contacts": {
+            "facebook": "",
+            "website": null,
+            "vk": "",
+            "twitter": "",
+            "instagram": "",
+            "youtube": null,
+            "github": "",
+            "mainLink": null
+        },
+        "lookingForAJob": true,
+        "lookingForAJobDescription": "",
+        "fullName": "",
+        "userId": 2,
+        "photos": {
+            "small": "",
+            "large": ""
+        }
+    }
 }
 
 const profilePageReducer = (state: ProfilePageType = initialState, action: any): ProfilePageType => {
@@ -42,6 +66,11 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
             return {
                 ...state, newPostText: action.newText
             }
+        case SET_USER_PROFILE: {
+            return{
+                ...state, profile: action.profile
+            }
+        }
         default:
             return state
     }
@@ -49,6 +78,7 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
 
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const setUserProfile = (profile: ProfileUserType) => ({type: SET_USER_PROFILE, profile})
 
 
 export default profilePageReducer

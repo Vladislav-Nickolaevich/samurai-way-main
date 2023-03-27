@@ -1,11 +1,17 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
+import Preloader from "../../../../common/Preloader/Preloader";
+import {ProfileUserType} from "../../Profile";
 
 type ProfileInfoType = {
     img: string
     titleError: string
+    profile: ProfileUserType
 }
 export const ProfileInfo = (props:ProfileInfoType) => {
+    if(!props.profile.photos.large){
+        return <Preloader/>
+    }
     return (
         <div>
             <div>
@@ -14,7 +20,8 @@ export const ProfileInfo = (props:ProfileInfoType) => {
                     alt={props.titleError}/>
             </div>
             <div className={s.descriptionBlock}>
-                ava + descr
+                <img src={props.profile.photos.large} alt='Error'/>
+                <div>ava + descr</div>
             </div>
         </div>
     );
