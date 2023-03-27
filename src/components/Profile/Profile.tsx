@@ -3,7 +3,7 @@ import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 export type ProfileType = {
-    profile: any
+    profile: ProfileUserType
 }
 export type ProfileUserType = {
     aboutMe: string
@@ -28,6 +28,8 @@ export type PhotosType = {
     small: null | string
     large: null | string
 }
+
+
 export const Profile = (props: ProfileType) => {
 
     const profileInfoImg = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"

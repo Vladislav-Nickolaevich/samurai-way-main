@@ -24,26 +24,25 @@ let initialState = {
         },
     ],
     newPostText: '',
-    // profile: null
     profile: {
-        "aboutMe": "",
-        "contacts": {
-            "facebook": "",
-            "website": null,
-            "vk": "",
-            "twitter": "",
-            "instagram": "",
-            "youtube": null,
-            "github": "",
-            "mainLink": null
+        aboutMe: '',
+        contacts: {
+            facebook: '',
+            website: '',
+            vk: '',
+            twitter: '',
+            instagram: '',
+            youtube: '',
+            github: '',
+            mainLink: '',
         },
-        "lookingForAJob": true,
-        "lookingForAJobDescription": "",
-        "fullName": "",
-        "userId": 2,
-        "photos": {
-            "small": "",
-            "large": ""
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
+        userId: 0,
+        photos: {
+            small: '',
+            large: '',
         }
     }
 }
