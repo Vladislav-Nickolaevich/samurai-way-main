@@ -16,7 +16,6 @@ type UsersPropsType = {
 
 const Users = (props: UsersPropsType) => {
     const {totalUsersCount, users, pageSize, onPageChanged, currentPage, unfollowed, followed} = props
-
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -25,7 +24,7 @@ const Users = (props: UsersPropsType) => {
     return (
         <div>
             <div>
-                {pages.map(p => {
+                {pages.slice(0, 50).map(p => {
                     return (
                         <span
                             key={p}
@@ -46,7 +45,7 @@ const Users = (props: UsersPropsType) => {
                         <span>
                             <div>
                                 <NavLink to={'/profile/' + u.id}>
-                                    <img src={u.photos.small != null? u.photos.small: profileImg} className={user.photo} alt="Упс, ошибка"/>
+                                    <img src={u.photos.small != null? u.photos.small: profileImg} className={user.photo} alt="Image is not found"/>
                                 </NavLink>
                             </div>
                             <div>{u.followed

@@ -52,7 +52,7 @@ const userReducer = (state: UsersType = initialState, action: any): UsersType =>
         case SET_TOTAL_USERS_COUNT:{
             return{
                 ...state,
-                totalUsersCount: action.count / 100
+                totalUsersCount: action.count
             }
         }
         case TOGGLE_IS_FETCHING: {
