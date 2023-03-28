@@ -6,3 +6,11 @@
 .header img {
     width: 40px;
 }
+.login{
+    float: right;
+    margin-right: 15px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+
+}

@@ -1,0 +1,1 @@
+A training project based on the materials of the YouTube channel IT-KAMASUTRA "The Way of the Samurai" using class and functional components

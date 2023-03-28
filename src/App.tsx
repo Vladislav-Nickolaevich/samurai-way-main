@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./components/Header/Header";
 import {Route} from 'react-router-dom';
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
@@ -10,16 +9,13 @@ import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 const App = () => {
-
-    const headerImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ-DfbDa_apFhyZF4tENuL5UWFIb3lCtHK5f2AqBlFJKf7PDGqVOfrGS73OpU27s975mI&usqp=CAU"
-    const titleError = 'Image is not found'
-
     return (
         <div className='app-wrapper'>
-            <Header img={headerImg} titleError={titleError}/>
+            <HeaderContainer/>
             <NavbarContainer/>
             <div className='app-wrapper-content'>
                 <Route path={path.DIALOGS} render={() => <DialogsContainer/>}/>
