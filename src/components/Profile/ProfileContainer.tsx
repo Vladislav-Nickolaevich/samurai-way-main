@@ -9,6 +9,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 type ProfileContainerType = {
     profile: ProfileUserType
     getUserProfile: (userId: string) => void
+    isAuth: boolean
 }
 
 type PathParamType = {
@@ -26,15 +27,15 @@ class ProfileContainer extends React.Component<PropsType> {
         }
         this.props.getUserProfile(userId)
     }
-
     render() {
-        return <Profile profile={this.props.profile}/>
+        return <Profile profile={this.props.profile} isAuth={this.props.isAuth}/>
     }
 }
 
 let mapStateToProps = (state: AppRootStateType) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
     }
 }
 

@@ -5,5 +5,6 @@ export const path = {
     NEWS: '/news',
     MUSIC: '/music',
     SETTINGS: '/settings',
-    USERS: '/users'
+    USERS: '/users',
+    LOGIN: '/login'
 }
