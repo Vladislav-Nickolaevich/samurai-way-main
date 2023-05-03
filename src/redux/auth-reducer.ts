@@ -32,9 +32,9 @@ const authReducer = (state: DataAuthType = initialState, action: any): DataAuthT
     }
 }
 
-export const setAuthUserData = (data: DataAuthType) => ({type: SET_AUTH_DATA, data})
+const setAuthUserData = (data: DataAuthType) => ({type: SET_AUTH_DATA, data})
 
-export const authMe = () => {
+export const getAuthMeData = () => {
     return (dispatch: Dispatch<Action>) => {
         userAPI.authMe()
             .then(response => {
