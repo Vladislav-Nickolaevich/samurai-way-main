@@ -10,6 +10,7 @@ import Users from "./Users";
 import Preloader from "../../common/Preloader/Preloader";
 import {AppRootStateType} from "../../redux/redux-store";
 import {PhotosType} from "../Profile/Profile";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 export type LocationType = {
     city: string,
@@ -46,7 +47,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
-
         this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
@@ -80,5 +80,5 @@ const mapStateToProps = (state: AppRootStateType) => {
 }
 
 
-export default connect(mapStateToProps, {
-    follow, unfollow, setCurrentPage, getUsers})(UsersContainer);
+export default withAuthRedirect(connect(mapStateToProps, {
+    follow, unfollow, setCurrentPage, getUsers})(UsersContainer));
