@@ -11,6 +11,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import {AppRootStateType} from "../../redux/redux-store";
 import {PhotosType} from "../Profile/Profile";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 export type LocationType = {
     city: string,
@@ -34,8 +35,7 @@ type UsersPropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
-
-    getUsers: (currentPage: number,pageSize: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
 }
 
 
@@ -80,5 +80,10 @@ const mapStateToProps = (state: AppRootStateType) => {
 }
 
 
-export default withAuthRedirect(connect(mapStateToProps, {
-    follow, unfollow, setCurrentPage, getUsers})(UsersContainer));
+export default compose<any>(
+    withAuthRedirect,
+    connect(
+        mapStateToProps,
+        {follow, unfollow, setCurrentPage, getUsers}
+    )
+)(UsersContainer)

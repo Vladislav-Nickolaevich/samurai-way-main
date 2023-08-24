@@ -3,7 +3,7 @@ import {sendMessageDialogs, updateMessageDialogs} from "../../redux/messagesPage
 import {connect} from "react-redux";
 import {Dialogs} from "./Dialogs";
 import {AppRootStateType} from "../../redux/redux-store";
-import {Action, Dispatch} from "redux";
+import {Action, compose, Dispatch} from "redux";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 const mapStateToProps = (state: AppRootStateType) => {
@@ -11,7 +11,7 @@ const mapStateToProps = (state: AppRootStateType) => {
         posts: state.messagesPage,
     }
 }
-const mapDispatchToProps = (dispatch:  Dispatch<Action>) => {
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
     return {
         addMessageText: () => {
             dispatch(sendMessageDialogs())
@@ -22,7 +22,10 @@ const mapDispatchToProps = (dispatch:  Dispatch<Action>) => {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
+const DialogContainer = compose<any>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs)
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
+export default DialogContainer
