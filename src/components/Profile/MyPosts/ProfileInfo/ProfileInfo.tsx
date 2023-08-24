@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css'
 import Preloader from "../../../../common/Preloader/Preloader";
 import {ProfileUserType} from "../../Profile";
 import profileImg from '../../../../assets/images/profileImg.png'
+import {ProfileStatus} from './ProfileStatus'
 
 type ProfileInfoType = {
     img: string
@@ -27,6 +28,7 @@ export const ProfileInfo = (props:ProfileInfoType) => {
                     style={{width: '70px'}}
                 />
                 <div>{props.profile.aboutMe}</div>
+                <ProfileStatus status={'Hello'}/>
             </div>
         </div>
     );
