@@ -2,7 +2,7 @@ import {v1} from "uuid";
 import {ProfilePageType} from "../components/Profile/MyPosts/MyPosts";
 import {ProfileUserType} from "../components/Profile/Profile";
 import {Action, Dispatch} from "redux";
-import {userAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -84,7 +84,7 @@ const setUserProfile = (profile: ProfileUserType) => ({type: SET_USER_PROFILE, p
 
 export const getUserProfile = (userId: string) => {
     return (dispatch: Dispatch<Action>) =>{
-        userAPI.getProfile(userId)
+        profileAPI.getProfile(userId)
             .then(data => {
                 dispatch(setUserProfile(data))
             })
