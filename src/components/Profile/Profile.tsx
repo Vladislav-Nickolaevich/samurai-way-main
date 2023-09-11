@@ -5,6 +5,8 @@ import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 export type ProfileType = {
     profile: ProfileUserType
     isAuth: boolean
+    status: string
+    updateUserStatus: (status: string) => void
 }
 export type ProfileUserType = {
     aboutMe: string
@@ -42,6 +44,8 @@ export const Profile = (props: ProfileType) => {
                 img={profileInfoImg}
                 titleError={titleError}
                 profile={props.profile}
+                status={props.status}
+                updateUserStatus={props.updateUserStatus}
             />
             <MyPostsContainer/>
         </div>

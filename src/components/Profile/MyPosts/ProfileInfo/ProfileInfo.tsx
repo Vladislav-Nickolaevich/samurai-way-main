@@ -9,6 +9,8 @@ type ProfileInfoType = {
     img: string
     titleError: string
     profile: ProfileUserType
+    status: string
+    updateUserStatus: (status: string) => void
 }
 export const ProfileInfo = (props:ProfileInfoType) => {
     if(!props.profile.userId){
@@ -28,7 +30,7 @@ export const ProfileInfo = (props:ProfileInfoType) => {
                     style={{width: '70px'}}
                 />
                 <div>{props.profile.aboutMe}</div>
-                <ProfileStatus status={'Hello'}/>
+                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
             </div>
         </div>
     );

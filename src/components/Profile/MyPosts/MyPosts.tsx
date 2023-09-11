@@ -12,6 +12,7 @@ export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
     profile: ProfileUserType
+    status: string
 }
 
 const MyPosts = (props: MyPostsType) => {
