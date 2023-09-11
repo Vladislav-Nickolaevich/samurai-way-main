@@ -7,6 +7,7 @@ import {profileAPI} from "../api/api";
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 export const SET_USER_PROFILE = 'SET-USER-PROFILE'
+export const SET_STATUS = 'SET-STATUS'
 
 let initialState = {
     posts: [
@@ -46,7 +47,8 @@ let initialState = {
             small: '',
             large: '',
         }
-    }
+    },
+    status: ''
 }
 
 const profilePageReducer = (state: ProfilePageType = initialState, action: any): ProfilePageType => {
@@ -72,6 +74,10 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
                 ...state, profile: action.profile
             }
         }
+        case SET_STATUS:
+            return {
+                ...state, status: action.status
+            }
         default:
             return state
     }
@@ -80,13 +86,33 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 const setUserProfile = (profile: ProfileUserType) => ({type: SET_USER_PROFILE, profile})
-
+const setStatus = (status: string) => ({type: SET_STATUS, status})
 
 export const getUserProfile = (userId: string) => {
     return (dispatch: Dispatch<Action>) =>{
         profileAPI.getProfile(userId)
             .then(data => {
                 dispatch(setUserProfile(data))
+            })
+    }
+}
+
+export const getUserStatus = (userId: string) => {
+    return (dispatch: Dispatch<Action>) =>{
+        profileAPI.getStatus(userId)
+            .then(data => {
+                dispatch(setStatus(data.data))
+            })
+    }
+}
+
+export const updateUserStatus = (status: string) => {
+    return (dispatch: Dispatch<Action>) =>{
+        profileAPI.updateStatus(status)
+            .then(data => {
+                if(data.data.resultCode === 0){
+                    dispatch(setStatus(status))
+                }
             })
     }
 }
