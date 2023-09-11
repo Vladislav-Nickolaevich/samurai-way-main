@@ -4,7 +4,8 @@ import messagesPageReducer from "./messagesPage-reducer";
 import navbarReducer from "./navbar-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
+import {reducer as formReducer} from 'redux-form'
 
 
 let reducers = combineReducers({
@@ -12,7 +13,8 @@ let reducers = combineReducers({
     profilePage: profilePageReducer,
     messagesPage: messagesPageReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 })
 
 let store = createStore(reducers, applyMiddleware(thunk))
