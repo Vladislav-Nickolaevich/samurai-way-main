@@ -1,5 +1,5 @@
 import React from 'react';
-import {sendMessageDialogs, updateMessageDialogs} from "../../redux/messagesPage-reducer";
+import {sendMessageDialogs} from "../../redux/messagesPage-reducer";
 import {connect} from "react-redux";
 import {Dialogs} from "./Dialogs";
 import {AppRootStateType} from "../../redux/redux-store";
@@ -13,11 +13,8 @@ const mapStateToProps = (state: AppRootStateType) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
     return {
-        addMessageText: () => {
-            dispatch(sendMessageDialogs())
-        },
-        updateNewMessageText: (text: string) => {
-            dispatch(updateMessageDialogs(text))
+        addMessageText: (text: string) => {
+            dispatch(sendMessageDialogs(text))
         }
     }
 }

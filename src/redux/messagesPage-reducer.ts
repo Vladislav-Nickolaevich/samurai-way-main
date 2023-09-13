@@ -4,10 +4,9 @@ import {v1} from "uuid";
 export type DialogType = {
     messages: messageType[]
     userName: userNameType[]
-    newMessageText: string
 }
-export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
+
 let initialState = {
         messages: [
             {id: '1', message: 'Hi'},
@@ -37,28 +36,20 @@ let initialState = {
                 img: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg"
             },
         ],
-        newMessageText: ''
-
     }
 
 const messagesPageReducer = (state: DialogType = initialState, action: any): DialogType => {
     switch (action.type){
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state, newMessageText: action.newMessageText
-            }
         case SEND_NEW_MESSAGE_TEXT:
-            let newMessage = {id: v1(), message: state.newMessageText}
+            let newMessage = {id: v1(), message: action.mes}
             return {
-                ...state, messages: [...state.messages, newMessage], newMessageText: ''
+                ...state, messages: [...state.messages, newMessage]
             }
         default:
             return state
     }
 }
 
-
-export const updateMessageDialogs = (mes: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: mes})
-export const sendMessageDialogs = () => ({type: SEND_NEW_MESSAGE_TEXT})
+export const sendMessageDialogs = (mes: string) => ({type: SEND_NEW_MESSAGE_TEXT, mes} as const)
 
 export default messagesPageReducer

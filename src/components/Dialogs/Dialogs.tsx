@@ -3,6 +3,7 @@ import s from './Dialogs.module.css'
 import {DialogMessage} from "./DialogComponents/DialogMessage/DialogMessage";
 import {DialogUsers} from "./DialogComponents/DialogUsers/DialogUsers";
 import {DialogType} from "../../redux/messagesPage-reducer";
+import {Redirect} from "react-router-dom";
 
 export type userNameType = {
     id: number
@@ -16,24 +17,23 @@ export type messageType = {
 
 type DialogsPropsType = {
     posts: DialogType
-    addMessageText: () => void
-    updateNewMessageText: (text: string) => void
+    addMessageText: (text: string) => void
     isAuth: boolean
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
         return (
-        <div className={s.dialogs}>
-            <DialogUsers
-                state={props.posts.userName}
-            />
-            <DialogMessage
-                posts={props.posts.messages}
-                updateNewMessageText={props.updateNewMessageText}
-                addMessageText={props.addMessageText}
-                newDialogText={props.posts.newMessageText}
-            />
-        </div>
+                props.isAuth?
+                    <div className={s.dialogs}>
+                        <DialogUsers
+                            state={props.posts.userName}
+                        />
+                        <DialogMessage
+                            posts={props.posts.messages}
+                            addMessageText={props.addMessageText}
+                        />
+                    </div>:
+                    <Redirect to='/login'/>
     );
 };
 
