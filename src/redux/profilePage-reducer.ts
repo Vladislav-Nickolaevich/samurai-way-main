@@ -5,7 +5,6 @@ import {Action, Dispatch} from "redux";
 import {profileAPI} from "../api/api";
 
 export const ADD_POST = 'ADD-POST'
-export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 export const SET_USER_PROFILE = 'SET-USER-PROFILE'
 export const SET_STATUS = 'SET-STATUS'
 
@@ -26,7 +25,6 @@ let initialState = {
             errorMes: 'Image not found'
         },
     ],
-    newPostText: '',
     profile: {
         aboutMe: '',
         contacts: {
@@ -57,17 +55,13 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
             const newPost = {
                 id: v1(),
                 likeCounts: 0,
-                mes: state.newPostText,
+                mes: action.mes,
                 photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
                 errorMes: 'Image not found'
             }
 
             return {
-                ...state, posts: [...state.posts, newPost], newPostText: ''
-            }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state, newPostText: action.newText
+                ...state, posts: [newPost, ...state.posts],
             }
         case SET_USER_PROFILE: {
             return{
@@ -83,8 +77,7 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const addPostAC = (mes: string) => ({type: ADD_POST, mes})
 const setUserProfile = (profile: ProfileUserType) => ({type: SET_USER_PROFILE, profile})
 const setStatus = (status: string) => ({type: SET_STATUS, status})
 
