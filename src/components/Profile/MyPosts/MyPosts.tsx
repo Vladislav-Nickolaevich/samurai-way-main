@@ -3,25 +3,13 @@ import s from './MyPosts.module.css'
 import {Post, PostType} from "./Posts/Post";
 import {ProfileUserType} from "../Profile";
 import {Field, reduxForm} from "redux-form";
+import {maxLength, required} from "../../../utils/validators/validators";
+import {Textarea} from "../../../common/FormsControls/FormsControls";
 
-type MyPostsType = {
-    addPost: (mes: string) => void
-    posts: ProfilePageType
-}
-export type ProfilePageType = {
-    posts: PostType[]
-    profile: ProfileUserType
-    status: string
-}
-type MyPostMessageType = {
-    MyPostMessage: string
-}
+const maxLength15 = maxLength(15)
 
 const MyPosts = (props: MyPostsType) => {
-    const {
-        // updateNewPostText,
-        addPost, posts} = props
-    // let newText = React.createRef<HTMLTextAreaElement>()
+    const {addPost, posts} = props
 
     const addPostHandler = (mes: MyPostMessageType) => {
         if (mes.MyPostMessage.trim() !== '') {
@@ -49,7 +37,9 @@ const AddPostMessage = (props: any) => {
             <div>
                     <Field
                         name={'MyPostMessage'}
-                        component={'textarea'}
+                        component={Textarea}
+                        validate={[required, maxLength15]}
+                        type={'Post message'}
                     />
             </div>
             <div>
@@ -62,3 +52,16 @@ const AddPostMessage = (props: any) => {
 const AddMessageMyPostFormRedux =  reduxForm<MyPostMessageType>({form: 'AddMessageMyPostForm'})(AddPostMessage)
 
 export default MyPosts;
+
+type MyPostsType = {
+    addPost: (mes: string) => void
+    posts: ProfilePageType
+}
+export type ProfilePageType = {
+    posts: PostType[]
+    profile: ProfileUserType
+    status: string
+}
+type MyPostMessageType = {
+    MyPostMessage: string
+}

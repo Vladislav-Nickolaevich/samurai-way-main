@@ -1,15 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from "../../Dialogs.module.css";
 import {messageType} from "../../Dialogs";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {maxLength, required} from "../../../../utils/validators/validators";
+import {Textarea} from "../../../../common/FormsControls/FormsControls";
 
-type DialogMessageType = {
-    posts: messageType[]
-    addMessageText: (text: string) => void
-}
-type AddMessageDialogType = {
-    MessageDialogs: string
-}
+const maxLength100 = maxLength(100)
 
 export const DialogMessage = (props: DialogMessageType) => {
     const {posts, addMessageText} = props
@@ -37,13 +33,14 @@ export const DialogMessage = (props: DialogMessageType) => {
 };
 
 
-const AddNewMyPostForm = (props: any) => {
-
+const AddNewMyPostForm: FC<InjectedFormProps<AddMessageDialogType>> = (props) => {
+    debugger
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={'textarea'}
+                <Field component={Textarea}
                        name={'MessageDialogs'}
+                       validate={[required, maxLength100]}
                 />
             </div>
             <div>
@@ -54,3 +51,12 @@ const AddNewMyPostForm = (props: any) => {
     )
 }
 const AddMessageFormRedux = reduxForm<AddMessageDialogType>({form: 'AddMessageForm'})(AddNewMyPostForm)
+
+
+type DialogMessageType = {
+    posts: messageType[]
+    addMessageText: (text: string) => void
+}
+type AddMessageDialogType = {
+    MessageDialogs: string
+}
