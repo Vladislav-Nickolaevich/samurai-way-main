@@ -6,8 +6,9 @@ import {loginTC} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 import {AppRootStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
+import style from './../../common/FormsControls/FormsControls.module.css'
 
-const LoginForm: FC<InjectedFormProps<FormDataType>>  = (props) => {
+const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -34,6 +35,10 @@ const LoginForm: FC<InjectedFormProps<FormDataType>>  = (props) => {
                     type={'checkbox'}
                 /> remember me
             </div>
+            {props.error ?
+                <div className={style.formSumError}>{props.error}</div> :
+                ''
+            }
             <div>
                 <button>Login</button>
             </div>
@@ -41,12 +46,12 @@ const LoginForm: FC<InjectedFormProps<FormDataType>>  = (props) => {
     )
 };
 
-const Login = (props: LoginType ) => {
+const Login = (props: LoginType) => {
     const {isAuth, loginTC} = props
     const onSubmit = (formData: FormDataType) => {
         loginTC(formData)
     }
-    if(isAuth){
+    if (isAuth) {
         return <Redirect to={'/profile'}/>
     }
     return <>
@@ -62,8 +67,7 @@ const mapStateToProps = (state: AppRootStateType) => {
         isAuth: state.auth.isAuth
     }
 }
-export default  connect(mapStateToProps, {loginTC})(Login);
-
+export default connect(mapStateToProps, {loginTC})(Login);
 
 
 export type FormDataType = {
