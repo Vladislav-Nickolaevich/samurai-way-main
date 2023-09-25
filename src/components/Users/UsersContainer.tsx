@@ -1,43 +1,11 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {
-    follow, getUsers,
-    setCurrentPage,
-    unfollow
-} from "../../redux/users-reducer";
-
+import {follow, getUsers, setCurrentPage, unfollow} from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../../common/Preloader/Preloader";
 import {AppRootStateType} from "../../redux/redux-store";
 import {PhotosType} from "../Profile/Profile";
-import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
-
-export type LocationType = {
-    city: string,
-    country: string
-}
-export type UserType = {
-    id: number,
-    photos: PhotosType
-    followed: boolean,
-    name: string,
-    status: string,
-    location: LocationType
-}
-type UsersPropsType = {
-    users: UserType[]
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setCurrentPage: (pageNumber: number) => void
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-    getUsers: (currentPage: number, pageSize: number) => void
-}
-
 
 class UsersContainer extends React.Component<UsersPropsType> {
 
@@ -81,9 +49,35 @@ const mapStateToProps = (state: AppRootStateType) => {
 
 
 export default compose<any>(
-    withAuthRedirect,
     connect(
         mapStateToProps,
         {follow, unfollow, setCurrentPage, getUsers}
     )
 )(UsersContainer)
+
+
+
+export type LocationType = {
+    city: string,
+    country: string
+}
+export type UserType = {
+    id: number,
+    photos: PhotosType
+    followed: boolean,
+    name: string,
+    status: string,
+    location: LocationType
+}
+type UsersPropsType = {
+    users: UserType[]
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setCurrentPage: (pageNumber: number) => void
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: Array<number>
+    getUsers: (currentPage: number, pageSize: number) => void
+}

@@ -1,13 +1,12 @@
-import {AnyAction, applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import profilePageReducer from "./profilePage-reducer";
 import messagesPageReducer from "./messagesPage-reducer";
 import navbarReducer from "./navbar-reducer";
 import usersReducer from "./users-reducer";
 import authReducer, {LoginActionsType} from "./auth-reducer";
-import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk';
+import thunk, {ThunkAction} from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
-import {useDispatch} from "react-redux";
-
+import appReducer from "./app-reducer";
 
 let reducers = combineReducers({
     navbar: navbarReducer,
@@ -15,7 +14,8 @@ let reducers = combineReducers({
     messagesPage: messagesPageReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 })
 
 let store = createStore(reducers, applyMiddleware(thunk))

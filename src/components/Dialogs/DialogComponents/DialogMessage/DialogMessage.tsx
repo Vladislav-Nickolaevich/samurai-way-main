@@ -34,7 +34,6 @@ export const DialogMessage = (props: DialogMessageType) => {
 
 
 const AddNewMyPostForm: FC<InjectedFormProps<AddMessageDialogType>> = (props) => {
-    debugger
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
