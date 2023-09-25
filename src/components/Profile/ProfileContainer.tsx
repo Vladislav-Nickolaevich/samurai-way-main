@@ -15,6 +15,7 @@ type ProfileContainerType = {
     getUserStatus: (userId: string) => void
     status: string
     updateUserStatus: (status: string) => void
+    userId: number  | null
 }
 
 type PathParamType = {
@@ -26,22 +27,32 @@ type PropsType =  RouteComponentProps<PathParamType> & ProfileContainerType
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId
-        if(!userId || userId === ":userId"){
-           userId = this.props.profile.userId ? this.props.profile.userId.toString() : '28026'
+        let userAuthorizedID = this.props.match.params.userId
+        if (!userAuthorizedID) {
+            userAuthorizedID = this.props.userId ? this.props.userId.toString() : ''
+            if (userAuthorizedID === '') {
+                this.props.history.push('/login')
+            }
         }
-        this.props.getUserProfile(userId)
-        this.props.getUserStatus(userId)
+        this.props.getUserProfile(userAuthorizedID)
+        this.props.getUserStatus(userAuthorizedID)
+
     }
     render() {
-        return <Profile profile={this.props.profile} isAuth={this.props.isAuth} status={this.props.status} updateUserStatus={this.props.updateUserStatus}/>
+        return <Profile
+            profile={this.props.profile}
+            isAuth={this.props.isAuth}
+            status={this.props.status}
+            updateUserStatus={this.props.updateUserStatus}/>
     }
 }
 
 let mapStateToProps = (state: AppRootStateType) => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        userId: state.auth.id,
+        isAuth: state.auth.isAuth
     }
 }
 
