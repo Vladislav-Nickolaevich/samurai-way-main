@@ -1,6 +1,6 @@
 
 export const path = {
-    PROFILE: '/profile/:userId?',
+    PROFILE: '/profile',
     DIALOGS: '/dialogs',
     NEWS: '/news',
     MUSIC: '/music',
