@@ -1,8 +1,14 @@
 import {AppRootStateType} from "./redux-store";
+// import {createSelector, Selector} from "reselect";
 
 export const getUsers = (state: AppRootStateType) => {
     return state.usersPage.users
 }
+//пример использования и типизации мемоизированного селектора (для сложных вычисляемых селекторов)
+// export const getUsersFilter  = createSelector<[Selector<AppRootStateType, UsersType[]>], UsersType[]>(getUsers, (users) => {
+//    return users.filter(elem => true)
+// });
+
 export const getPageSize = (state: AppRootStateType) => {
     return state.usersPage.pageSize
 }
