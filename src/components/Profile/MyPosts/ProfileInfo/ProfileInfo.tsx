@@ -4,6 +4,7 @@ import Preloader from "../../../../common/Preloader/Preloader";
 import {ProfileUserType} from "../../Profile";
 import profileImg from '../../../../assets/images/profileImg.png'
 import {ProfileStatus} from './ProfileStatus'
+import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type ProfileInfoType = {
     img: string
@@ -30,7 +31,8 @@ export const ProfileInfo = (props:ProfileInfoType) => {
                     style={{width: '70px'}}
                 />
                 <div>{props.profile.aboutMe}</div>
-                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
+                {/*<ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>*/}
             </div>
         </div>
     );
