@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import userPhoto from "./Users.module.css";
+import userPhoto from "./Users.module.css"
 import profileImg from "../../assets/images/profileImg.png";
 import {UserContainerType} from "./UsersContainer";
 import {NavLink} from "react-router-dom";

@@ -32,7 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -41,18 +41,6 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
     ]
   },
   "devDependencies": {
@@ -64,5 +52,20 @@
     "@types/react-test-renderer": "17.0.1",
     "@types/redux-form": "8.3.3",
     "@types/uuid": "8.3.4"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!axios.*)"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
