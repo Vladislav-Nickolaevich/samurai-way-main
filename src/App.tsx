@@ -17,11 +17,6 @@ import {initializeAppTC} from "./redux/app-reducer";
 import {AppRootStateType} from "./redux/redux-store";
 import Preloader from "./common/Preloader/Preloader";
 
-type AppType = {
-    initializeAppTC: () => void
-    initialized: boolean
-}
-
 class App extends React.Component<AppType> {
     componentDidMount() {
         this.props.initializeAppTC()
@@ -58,3 +53,8 @@ export default compose<any>(
     connect(mapStateToProps, {initializeAppTC})
 )(App)
 
+
+type AppType = {
+    initializeAppTC: () => void
+    initialized: boolean
+}

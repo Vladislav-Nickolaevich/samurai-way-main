@@ -3,8 +3,6 @@ import {AnyAction} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AppRootStateType} from "./redux-store";
 
-
-
 const appReducer = (state: InitialStateType = initialState, action: InitializedSuccessACType): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
@@ -27,12 +25,9 @@ export const initializeAppTC = () => {
     }
 }
 
-
 export default appReducer
 
-const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS'
+const INITIALIZED_SUCCESS = 'app/INITIALIZED-SUCCESS'
 
 export type InitialStateType = typeof initialState
-let initialState = {
-    initialized: false
-}
+let initialState = {initialized: false}

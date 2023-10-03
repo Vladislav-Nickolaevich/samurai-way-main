@@ -2,6 +2,26 @@ import React from 'react';
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
+
+export const Profile = (props: ProfileType) => {
+    const profileInfoImg = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
+    const titleError = 'Image is not found'
+
+    return (
+        <div>
+            <ProfileInfo
+                img={profileInfoImg}
+                titleError={titleError}
+                profile={props.profile}
+                status={props.status}
+                updateUserStatus={props.updateUserStatus}
+            />
+            <MyPostsContainer/>
+        </div>
+    );
+};
+
+
 export type ProfileType = {
     profile: ProfileUserType
     isAuth: boolean
@@ -31,27 +51,6 @@ export type PhotosType = {
     small: null | string
     large: null | string
 }
-
-
-export const Profile = (props: ProfileType) => {
-
-    const profileInfoImg = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-    const titleError = 'Image is not found'
-
-    return (
-        <div>
-            <ProfileInfo
-                img={profileInfoImg}
-                titleError={titleError}
-                profile={props.profile}
-                status={props.status}
-                updateUserStatus={props.updateUserStatus}
-            />
-            <MyPostsContainer/>
-        </div>
-    );
-};
-
 
 
 

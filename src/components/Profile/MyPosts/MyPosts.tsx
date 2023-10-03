@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import s from './MyPosts.module.css'
 import {Post, PostType} from "./Posts/Post";
 import {ProfileUserType} from "../Profile";
@@ -8,9 +8,10 @@ import {Textarea} from "../../../common/FormsControls/FormsControls";
 
 const maxLength15 = maxLength(15)
 
-const MyPosts = (props: MyPostsType) => {
+const MyPosts = memo((props: MyPostsType) => {
     const {addPost, posts} = props
 
+    // console.log('render')
     const addPostHandler = (mes: MyPostMessageType) => {
         if (mes.MyPostMessage.trim() !== '') {
             addPost(mes.MyPostMessage)
@@ -24,11 +25,24 @@ const MyPosts = (props: MyPostsType) => {
                 <AddMessageMyPostFormRedux onSubmit={addPostHandler}/>
             </div>
             <div className={s.posts}>
-                <Post posts={posts.posts}/>
+                {
+                    posts.posts.map(p => {
+                        return (
+                            <Post
+                                key={p.id}
+                                mes={p.mes}
+                                id={p.id}
+                                photo={p.photo}
+                                errorMes={p.errorMes}
+                                likeCounts={p.likeCounts}
+                            />
+                        )
+                    })
+                }
             </div>
         </div>
     );
-};
+})
 
 
 const AddPostMessage = (props: any) => {

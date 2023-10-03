@@ -4,10 +4,6 @@ import {ProfileUserType} from "../components/Profile/Profile";
 import {Action, Dispatch} from "redux";
 import {profileAPI} from "../api/api";
 
-export const ADD_POST = 'ADD-POST'
-export const SET_USER_PROFILE = 'SET-USER-PROFILE'
-export const SET_STATUS = 'SET-STATUS'
-
 let initialState = {
     posts: [
         {
@@ -49,7 +45,7 @@ let initialState = {
     status: ''
 }
 
-const profilePageReducer = (state: ProfilePageType = initialState, action: any): ProfilePageType => {
+const profilePageReducer = (state: ProfilePageType = initialState, action: ProfilePageActionsType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
@@ -63,11 +59,10 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
             return {
                 ...state, posts: [newPost, ...state.posts],
             }
-        case SET_USER_PROFILE: {
-            return{
+        case SET_USER_PROFILE:
+            return {
                 ...state, profile: action.profile
             }
-        }
         case SET_STATUS:
             return {
                 ...state, status: action.status
@@ -77,38 +72,33 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
     }
 }
 
-export const addPostAC = (mes: string) => ({type: ADD_POST, mes})
-const setUserProfile = (profile: ProfileUserType) => ({type: SET_USER_PROFILE, profile})
-const setStatus = (status: string) => ({type: SET_STATUS, status})
+export const addPostAC = (mes: string) => ({type: ADD_POST, mes} as const)
+const setUserProfileAC = (profile: ProfileUserType) => ({type: SET_USER_PROFILE, profile} as const)
+const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 
-export const getUserProfile = (userId: string) => {
-    return (dispatch: Dispatch<Action>) =>{
-        profileAPI.getProfile(userId)
-            .then(data => {
-                dispatch(setUserProfile(data))
-            })
-    }
+export const getUserProfile = (userId: string) => async (dispatch: Dispatch<Action>) => {
+    let response = await profileAPI.getProfile(userId)
+    dispatch(setUserProfileAC(response))
 }
 
-export const getUserStatus = (userId: string) => {
-    return (dispatch: Dispatch<Action>) =>{
-        profileAPI.getStatus(userId)
-            .then(data => {
-                dispatch(setStatus(data.data))
-            })
-    }
+export const getUserStatus = (userId: string) => async (dispatch: Dispatch<Action>) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatusAC(response.data))
 }
 
-export const updateUserStatus = (status: string) => {
-    return (dispatch: Dispatch<Action>) =>{
-        profileAPI.updateStatus(status)
-            .then(data => {
-                if(data.data.resultCode === 0){
-                    dispatch(setStatus(status))
-                }
-            })
+export const updateUserStatus = (status: string) => async (dispatch: Dispatch<Action>) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatusAC(status))
     }
 }
 
 export default profilePageReducer
 
+type ProfilePageActionsType = ReturnType<typeof addPostAC>
+    | ReturnType<typeof setUserProfileAC>
+    | ReturnType<typeof setStatusAC>
+
+export const ADD_POST = 'ADD-POST'
+export const SET_USER_PROFILE = 'SET-USER-PROFILE'
+export const SET_STATUS = 'SET-STATUS'

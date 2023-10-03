@@ -8,25 +8,17 @@ export type PostType = {
     likeCounts: number
     errorMes: string
 }
-type PostsPropsType = {
-    posts: PostType[]
-}
 
-export const Post = (props: PostsPropsType) => {
+export const Post = (props: PostType) => {
     return (
-            <div className={PostsClasses.red}>
-                {props.posts.map(p => {
-                    return (
-                        <div key={p.id}>
-                            <img src={p.photo} alt={p.errorMes}/>
-                            {p.mes}
-                            <div>
-                                <span>Like {p.likeCounts}</span>
-                            </div>
+        <div className={PostsClasses.red}>
+                    <div>
+                        <img src={props.photo} alt={props.errorMes}/>
+                        {props.mes}
+                        <div>
+                            <span>Like {props.likeCounts}</span>
                         </div>
-                    );
-                })}
-            </div>
+                    </div>
+        </div>
     );
 };
-

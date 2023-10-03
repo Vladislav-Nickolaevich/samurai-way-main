@@ -14,14 +14,16 @@ import {
     getUsers
 } from "../../redux/users-selectors";
 
-class UsersContainer extends React.Component<UsersPropsType> {
+class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.getUsersTC(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsersTC(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.getUsersTC(pageNumber, pageSize)
     }
 
     render() {
@@ -53,12 +55,7 @@ const mapStateToProps = (state: AppRootStateType) => {
 
 
 export default compose<any>(
-    connect(
-        mapStateToProps,
-        {followTC, unfollowTC,
-            setCurrentPage,
-            getUsersTC}
-    )
+    connect( mapStateToProps, {followTC, unfollowTC, setCurrentPage, getUsersTC})
 )(UsersContainer)
 
 
@@ -67,7 +64,7 @@ export type LocationType = {
     city: string,
     country: string
 }
-export type UserType = {
+export type UserContainerType = {
     id: number,
     photos: PhotosType
     followed: boolean,
@@ -75,8 +72,8 @@ export type UserType = {
     status: string,
     location: LocationType
 }
-type UsersPropsType = {
-    users: UserType[]
+type UsersContainerType = {
+    users: UserContainerType[]
     followTC: (userId: number) => void
     unfollowTC: (userId: number) => void
     setCurrentPage: (pageNumber: number) => void

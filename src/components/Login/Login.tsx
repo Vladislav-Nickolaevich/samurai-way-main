@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../../common/FormsControls/FormsControls";
+import {InjectedFormProps, reduxForm} from "redux-form";
+import {createForm} from "../../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {loginTC} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
@@ -8,35 +8,14 @@ import {AppRootStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 import style from './../../common/FormsControls/FormsControls.module.css'
 
-const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: FC<InjectedFormProps<FormDataType>> = ({handleSubmit,error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    placeholder={'Email'}
-                    name={'email'}
-                    component={Input}
-                    validate={required}
-                />
-            </div>
-            <div>
-                <Field
-                    placeholder={'Password'}
-                    name={'password'}
-                    type={'password'}
-                    component={Input}
-                    validate={required}
-                />
-            </div>
-            <div>
-                <Field
-                    component={Input}
-                    name={'rememberMe'}
-                    type={'checkbox'}
-                /> remember me
-            </div>
-            {props.error ?
-                <div className={style.formSumError}>{props.error}</div> :
+        <form onSubmit={handleSubmit}>
+            {createForm('Email', 'email', required, null, '')}
+            {createForm('Password', 'password', required, 'password', '')}
+            {createForm('', 'rememberMe', undefined, 'checkbox', 'remember me')}
+            {error ?
+                <div className={style.formSumError}>{error}</div> :
                 ''
             }
             <div>
@@ -46,8 +25,7 @@ const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
     )
 };
 
-const Login = (props: LoginType) => {
-    const {isAuth, loginTC} = props
+const Login: FC<LoginType> = ({isAuth, loginTC}) => {
     const onSubmit = (formData: FormDataType) => {
         loginTC(formData)
     }

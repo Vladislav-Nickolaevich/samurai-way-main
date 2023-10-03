@@ -1,11 +1,11 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FC, useEffect, useState} from "react";
 
 type StatusType = {
     status: string
     updateUserStatus: (status: string) => void
 }
 
-export const ProfileStatusWithHooks = (props: StatusType) => {
+export const ProfileStatusWithHooks: FC <StatusType> = (props) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
