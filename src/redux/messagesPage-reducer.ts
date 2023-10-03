@@ -1,12 +1,6 @@
 import {messageType, userNameType} from "../components/Dialogs/Dialogs";
 import {v1} from "uuid";
 
-export type DialogType = {
-    messages: messageType[]
-    userName: userNameType[]
-}
-export const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
-
 let initialState = {
         messages: [
             {id: '1', message: 'Hi'},
@@ -53,3 +47,9 @@ const messagesPageReducer = (state: DialogType = initialState, action: any): Dia
 export const sendMessageDialogs = (mes: string) => ({type: SEND_NEW_MESSAGE_TEXT, mes} as const)
 
 export default messagesPageReducer
+
+export type DialogType = {
+    messages: messageType[]
+    userName: userNameType[]
+}
+export const SEND_NEW_MESSAGE_TEXT = 'messagePage/ADD-NEW-MESSAGE-TEXT'
